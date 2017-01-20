@@ -1,0 +1,176 @@
+package yuhuayuan.technologyexample.hunxiao.bean;
+
+import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.logging.Logger;
+
+import yuhuayuan.technologyexample.MessengerService;
+import yuhuayuan.technologyexample.MyService;
+import yuhuayuan.technologyexample.R;
+
+import static android.content.Intent.FLAG_ACTIVITY_NEW_DOCUMENT;
+
+public class TestActivity extends Activity {
+
+    long time = 0;
+    public static String TAG = "TestActivity";
+    public String name = "Test";
+    ServiceConnection serviceConnection;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_test);
+        ((Button)findViewById(R.id.id_start)).setText(""+Math.random());
+        time = System.currentTimeMillis();
+
+        mCallbackText = (TextView)findViewById(R.id.mCallbackText);
+
+        int id = android.os.Process.myPid();
+        Log.d(TAG, "process"+id);
+        findViewById(R.id.id_start).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doBindService();
+            }
+        });
+
+        findViewById(R.id.id_end).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doUnbindService();
+            }
+        });
+    }
+
+    /** Messenger for communicating with service. */
+    Messenger mService = null;
+    /** Flag indicating whether we have called bind on the service. */
+    boolean mIsBound;
+    /** Some text view we are using to show state information. */
+    TextView mCallbackText;
+
+    /**
+     * Handler of incoming messages from service.
+     */
+    class IncomingHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+
+            int id = android.os.Process.myPid();
+            Log.d(TAG, "process"+id);
+
+            switch (msg.what) {
+                case MessengerService.MSG_SET_VALUE:
+                    mCallbackText.setText("Received from service: " + msg.arg1);
+                    break;
+                default:
+                    super.handleMessage(msg);
+            }
+        }
+    }
+
+    /**
+     * Target we publish for clients to send messages to IncomingHandler.
+     */
+    final Messenger mMessenger = new Messenger(new IncomingHandler());
+
+    /**
+     * Class for interacting with the main interface of the service.
+     */
+    private ServiceConnection mConnection = new ServiceConnection() {
+        public void onServiceConnected(ComponentName className,
+                                       IBinder service) {
+            // This is called when the connection with the service has been
+            // established, giving us the service object we can use to
+            // interact with the service.  We are communicating with our
+            // service through an IDL interface, so get a client-side
+            // representation of that from the raw service object.
+            mService = new Messenger(service);
+            mCallbackText.setText("Attached.");
+
+            // We want to monitor the service for as long as we are
+            // connected to it.
+            try {
+                Message msg = Message.obtain(null,
+                        MessengerService.MSG_REGISTER_CLIENT);
+                msg.replyTo = mMessenger;
+                mService.send(msg);
+
+                // Give it some value as an example.
+                msg = Message.obtain(null,
+                        MessengerService.MSG_SET_VALUE, this.hashCode(), 0);
+                mService.send(msg);
+            } catch (RemoteException e) {
+                // In this case the service has crashed before we could even
+                // do anything with it; we can count on soon being
+                // disconnected (and then reconnected if it can be restarted)
+                // so there is no need to do anything here.
+            }
+
+            // As part of the sample, tell the user what happened.
+            Toast.makeText(TestActivity.this, "R.string.remote_service_connected",
+                    Toast.LENGTH_SHORT).show();
+        }
+
+        public void onServiceDisconnected(ComponentName className) {
+            // This is called when the connection with the service has been
+            // unexpectedly disconnected -- that is, its process crashed.
+            mService = null;
+            mCallbackText.setText("Disconnected.");
+
+            // As part of the sample, tell the user what happened.
+            Toast.makeText(TestActivity.this, "R.string.remote_service_disconnected",
+                    Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    void doBindService() {
+        // Establish a connection with the service.  We use an explicit
+        // class name because there is no reason to be able to let other
+        // applications replace our component.
+        boolean b = bindService(new Intent(TestActivity.this,
+                MessengerService.class), mConnection, Context.BIND_AUTO_CREATE);
+
+        Log.d(TAG, ""+b);
+        mIsBound = true;
+        mCallbackText.setText("Binding.");
+    }
+
+    void doUnbindService() {
+        if (mIsBound) {
+            // If we have received the service, and hence registered with
+            // it, then now is the time to unregister.
+            if (mService != null) {
+                try {
+                    Message msg = Message.obtain(null,
+                            MessengerService.MSG_UNREGISTER_CLIENT);
+                    msg.replyTo = mMessenger;
+                    mService.send(msg);
+                } catch (RemoteException e) {
+                    // There is nothing special we need to do if the service
+                    // has crashed.
+                }
+            }
+
+            // Detach our existing connection.
+            unbindService(mConnection);
+            mIsBound = false;
+            mCallbackText.setText("Unbinding.");
+        }
+    }
+}

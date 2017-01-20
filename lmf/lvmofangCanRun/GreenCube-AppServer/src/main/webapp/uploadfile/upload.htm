@@ -1,0 +1,28 @@
+<html>
+	<head>
+	<meta charset="utf-8" />
+	</head>
+<body>
+	<h1>上传文件示例</h1>
+	<form method="post" enctype="multipart/form-data" action="/upfile">
+		<p>类型：<input type="text" name="type" value="image"></p>
+		<p>
+			裁剪尺寸：<input type="text" name="scalesize" value="10x10"></p>
+		</p>
+		
+		<p>图片1：<input type="file" name="file1" ></p>
+		<p>图片2：<input type="file" name="file2" ></p>
+		<p>图片3：<input type="file" name="file3" ></p>
+		
+		<h3>控制参数</h3>
+		<p>
+			是否检查每一个上传文件大小？<input type="radio" value="1" name="strictLength"> 是<input type="radio"  value="0" name="strictLength">否 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			单个上传文件的大小不能超过：<input type="text" name="maxlen" ></p>
+		<p>
+			是否检查每一个上传文件尺寸？<input type="radio" name="strictSize" value="1"> 是<input type="radio" checked="true" name="strictSize" value="0">否 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			图片文件上传尺寸（宽和高）限制：<input type="text" name="maxsize" ></p>
+		
+		<input type="submit" value="开始上传">
+	</form>
+</body>
+</html>	

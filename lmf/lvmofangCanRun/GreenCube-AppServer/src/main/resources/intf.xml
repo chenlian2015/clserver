@@ -1,0 +1,2243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services>
+	<service name="ProviderMemberService" desc="供产会-会员服务">
+		<inter url="/service/ProviderMemberService/getProviderHistoryFee" desc="取得历史缴费记录列表" method="GET">
+			<parameters>
+				<parameter name="userid" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberProvider.html">MemberProvider对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderMemberService/getShopById" desc="根据id获得店铺" method="GET">
+			<parameters>
+				<parameter name="id" type="java.lang.String" desc="店铺id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberProvider.html">MemberProvider对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderMemberService/getMyShop" desc="取得我的店铺" method="GET">
+			<parameters>
+				<parameter name="userid" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberShop.html">MemberShop对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderMemberService/submitApply" desc="供产会会员注册" method="POST">
+			<parameters>
+				<parameter name="userJson" type="java.lang.String" desc="用户信息" defaultValue="" isRequired="true"></parameter>
+				<parameter name="shopJson" type="java.lang.String" desc="店铺信息" defaultValue="" isRequired="true"></parameter>
+				<parameter name="shopDetailJson" type="java.lang.String" desc="店铺详细信息" defaultValue="" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的标准反馈+店铺id]]></returnVal>
+			<memo><![CDATA[需要提交三个参数，分别是：
+				    <p>userJson ={"id": "用户id","nickname": "昵称"}</p>
+				    <p>shopJson = {"shopName": "店铺名称","shopPhone": "店铺电话（联系电话）","businessCategoryId": "经营类别id","businessCategoryName": "经营类别名称","cityId": "所在地区"}</p>
+				    <p>shopDetailJson = {"ownerName": "店铺店主真实姓名","ownerSex": "店主性别，1-男，2-女","bankName": "发卡行","cardHolderName": "持卡人姓名","cardNum": "卡号","cardHolderPhone": "预留手机号","identityType": "证件类型","identityNum": "证件号码", "corpName":"公司名称", "corpPhone" :"公司电话", "corpAddr":"公司地址", "corpLicensePic": "corpLicensePic":"营业执照副本", "corpOrgPic" :"组织机构代码证"}</p>
+				    
+				    <p style="font-weight:bold;font-size:16px;">测试数据如下：</p>
+				    <p>userJson={"id":"2","nickname":"胡晓光（测试）"}</p>
+					<p>shopJson={"shopName":"胡晓光的店铺（测试）", "shopPhone":"13720003175", "businessCategoryId": "", "businessCategoryName": "", "cityId":"1"}</p>
+					<p>shopDetailJson={"ownerName":"胡晓光","ownerSex":"1", "bankName": "工商银行望京支行","cardHolderName": "胡晓光","cardNum": "123","cardHolderPhone": "13720003175","identityType": "身份证","identityNum": "123",  "corpName":"公司名称", "corpPhone" :"公司电话", "corpAddr":"公司地址", "corpLicensePic": "corpLicensePic":"营业执照副本", "corpOrgPic" :"组织机构代码证"}</p>
+				]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderMemberService/updateShop" desc="更新店铺信息" method="POST">
+			<parameters>
+				<parameter name="shopJsonObject" type="java.lang.String" desc="店铺json对象" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[Json数据结构请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">MemberProvider对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderMemberService/deleteShop" desc="删除店铺信息" method="GET">
+			<parameters>
+				<parameter name="shopId" type="java.lang.String" desc="店铺id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的标准反馈]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderMemberService/getShopCommentsForPagelit" desc="取得店铺的评论" method="GET">
+			<parameters>
+				<parameter name="shopId" type="java.lang.String" desc="店铺id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="分页" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Comment.html">Comment对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderMemberService/getShopNoticeForPagelit" desc="分页查询店铺通知公告" method="GET">
+			<parameters>
+				<parameter name="shopId" type="java.lang.String" desc="店铺id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="分页" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberNews.html">MemberNews对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderMemberService/getShopNewsForPagelit" desc="分页查询店铺新闻" method="POST">
+			<parameters>
+				<parameter name="shopId" type="java.lang.String" desc="店铺id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="分页" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberNews.html">MemberNews对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderMemberService/getShopNewsById" desc="取得店铺资讯" method="POST">
+			<parameters>
+				<parameter name="newsId" type="java.lang.String" desc="新闻id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberNews.html">MemberNews对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderMemberService/updateNews" desc="保存咨询信息" method="POST">
+			<parameters>
+				<parameter name="newsJson" type="java.lang.String" desc="新闻json对象" defaultValue="{}" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberNews.html">MemberNews对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderMemberService/deleteNews" desc="删除店铺新闻" method="GET">
+			<parameters>
+				<parameter name="newsId" type="java.lang.String" desc="新闻id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberNews.html">MemberNews对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderMemberService/updateNotice" desc="更新店铺通知" method="POST">
+			<parameters>
+				<parameter name="noticeJson" type="java.lang.String" desc="通知jison数据" defaultValue="{}" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberNews.html">MemberNews对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderMemberService/deleteNotice" desc="删除通知信息" method="GET">
+			<parameters>
+				<parameter name="noticeId" type="java.lang.String" desc="通知id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberNews.html">MemberNews对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderMemberService/getAppliedShopsForPagelit" desc="分页获取待审核店铺" method="GET">
+			<parameters>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberProvider.html">MemberProvider对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderMemberService/getApprovedShopsForPagelit" desc="分页获取已审核通过的店铺列表" method="GET">
+			<parameters>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberProvider.html">MemberProvider对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderMemberService/rateShop" desc="店铺评级" method="GET">
+			<parameters>
+				<parameter name="shopId" type="java.lang.String" desc="店铺id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="level" type="java.lang.String" desc="等级" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回标准反馈]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderMemberService/recommendShop" desc="店铺推荐" method="GET">
+			<parameters>
+				<parameter name="shopId" type="java.lang.String" desc="店铺id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回标准反馈]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderMemberService/unRecommendShop" desc="取消店铺推荐" method="GET">
+			<parameters>
+				<parameter name="shopId" type="java.lang.String" desc="店铺id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回标准反馈]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderMemberService/changeShopValidStatus" desc="更改店铺有效标志参数" method="GET">
+			<parameters>
+				<parameter name="shopId" type="java.lang.String" desc="店铺id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="validStatus" type="java.lang.String" desc="状态值（0-无效，1-有效）" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回标准反馈]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderMemberService/changeShopNewsValidStatus" desc="更改店铺新闻状态" method="GET">
+			<parameters>
+				<parameter name="newsId" type="java.lang.String" desc="新闻id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="validStatus" type="java.lang.String" desc="有效状态" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回标准反馈]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderMemberService/changeShopNewsTopStatus" desc="更改店铺新闻状态" method="GET">
+			<parameters>
+				<parameter name="newsId" type="java.lang.String" desc="新闻id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="topStatus" type="java.lang.String" desc="置顶状态" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回标准反馈]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderMemberService/changeShopNewsAuditStatus" desc="更改店铺新闻审核状态" method="GET">
+			<parameters>
+				<parameter name="newsId" type="java.lang.String" desc="新闻id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="auditStatus" type="java.lang.String" desc="审核状态" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回标准反馈]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderMemberService/submitShopComment" desc="对一个店铺进行评价" method="GET">
+			<parameters>
+				<parameter name="shopid" type="java.lang.String" desc="店铺id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="commentJson" type="java.lang.String" desc="评论json内容" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回标准反馈+评价id]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderMemberService/getProviderDetail" desc="取得供产会会员详细信息" method="GET">
+			<parameters>
+				<parameter name="shopid" type="java.lang.String" desc="店铺id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberProviderDetail.html">MemberProviderDetail对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+	</service>
+	
+	<service name="ProviderGoodsService" desc="供产会-商品服务">
+			
+		 <inter url="/service/ProviderGoodsService/loadProviderGoodsByKeywordsandCategory" desc="店主依据关键字或业务分类取得店铺的商品" method="GET">
+				<parameters>
+					<parameter name="keyword" type="java.lang.String" desc="过滤关键字" defaultValue="" isRequired="false"></parameter>
+					<parameter name="categoryId" type="java.lang.String" desc="业务类别id" defaultValue="" isRequired="false"></parameter>
+					<parameter name="pageNum" type="java.lang.String" desc="分页页数" defaultValue="1" isRequired="true"></parameter>
+				</parameters>
+				<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/ProviderGoods.html">ProviderGoods对象数据结构说明</a>]]></returnVal>
+				<memo><![CDATA[]]></memo>
+			</inter>
+		
+		<inter url="/service/ProviderGoodsService/loadProviderGoodsByKeywords" desc="店主取得店铺的商品" method="GET">
+			<parameters>
+				<parameter name="providerId" type="java.lang.String" desc="供应商id" defaultValue="1" isRequired="false"></parameter>
+				<parameter name="keyword" type="java.lang.String" desc="过滤关键字" defaultValue="1" isRequired="false"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="分页页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/ProviderGoods.html">ProviderGoods对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderGoodsService/loadProviderGoodsByCategoryId" desc="查看店铺的商品，分页显示" method="GET">
+			<parameters>
+				<parameter name="providerId" type="java.lang.String" desc=" 供应商id" defaultValue="1" isRequired="false"></parameter>
+				<parameter name="categoryId" type="java.lang.String" desc="过滤关键字" defaultValue="1" isRequired="false"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="店铺状态" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/ProviderGoods.html">ProviderGoods对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderGoodsService/loadProviderGoodsTopN" desc="查看店铺的商品，分页显示" method="GET">
+			<parameters>
+				<parameter name="providerId" type="java.lang.String" desc=" 供应商id" defaultValue="1" isRequired="false"></parameter>
+				<parameter name="number" type="java.lang.String" desc="数量" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/ProviderGoods.html">ProviderGoods对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderGoodsService/searchProviderForPagelit" desc="查看店铺的商品，分页显示" method="GET">
+			<parameters>
+				<parameter name="providerId" type="java.lang.String" desc="供应商id" defaultValue="1" isRequired="false"></parameter>
+				<parameter name="categoryId" type="java.lang.String" desc="分类id" defaultValue="1" isRequired="false"></parameter>
+				<parameter name="provinceId" type="java.lang.String" desc="省份id" defaultValue="1" isRequired="false"></parameter>
+				<parameter name="cityId" type="java.lang.String" desc="城市id" defaultValue="1" isRequired="false"></parameter>
+				<parameter name="keyword" type="java.lang.String" desc="关键字" defaultValue="1" isRequired="false"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/ProviderGoods.html">ProviderGoods对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderGoodsService/getHotGoods" desc="取得热门商品" method="GET">
+			<parameters>
+				<parameter name="count" type="java.lang.String" desc="数量" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/ProviderGoods.html">ProviderGoods对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderGoodsService/getGoodsById" desc="获取一个商品详细信息" method="GET">
+			<parameters>
+				<parameter name="id" type="java.lang.String" desc="主键" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/ProviderGoods.html">ProviderGoods对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		
+		<inter url="/service/ProviderGoodsService/updateGoods" desc="保存商品信息如果id为空，则执行保存操作，如果id非空，则执行更新操作" method="POST">
+			<parameters>
+				<parameter name="goodsJson" type="java.lang.String" desc="商品的json数据" defaultValue="{}" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/ProviderGoods.html">ProviderGoods对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderGoodsService/deleteGoodsById" desc="删除商品" method="GET">
+			<parameters>
+				<parameter name="goodsId" type="java.lang.String" desc="商品id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回标准反馈]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderGoodsService/putShelf" desc="商品上架操作" method="GET">
+			<parameters>
+				<parameter name="goodsId" type="java.lang.String" desc="商品id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回标准反馈]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderGoodsService/offShelf" desc="商品下架操作" method="GET">
+			<parameters>
+				<parameter name="goodsId" type="java.lang.String" desc="商品id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回标准反馈]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderGoodsService/loadAppliedProviderGoodsForPagelit" desc="未通过审核的共产会商品" method="GET">
+			<parameters>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回标准反馈]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderGoodsService/loadApprovedProviderGoodsForPagelit" desc="已通过审核的共产会商品" method="GET">
+			<parameters>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回标准反馈]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderGoodsService/approveProviderGoods" desc="审核通过共产会商品" method="POST">
+			<parameters>
+				<parameter name="goodsId" type="java.lang.String" desc="商品id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="auditUserId" type="java.lang.String" desc="审核人id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="auditUserName" type="java.lang.String" desc="审核人姓名" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回标准反馈]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderGoodsService/rejectProviderGoods" desc="审核驳回共产会商品" method="POST">
+			<parameters>
+				<parameter name="goodsId" type="java.lang.String" desc="商品id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="auditUserId" type="java.lang.String" desc="审核人id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="auditUserName" type="java.lang.String" desc="审核人姓名" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回标准反馈]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ProviderGoodsService/loadGoodsByMemberId" desc="依据成员id得到共产会商品" method="POST">
+			<parameters>
+				<parameter name="memberId" type="java.lang.String" desc="成员id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回标准反馈]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		 <inter url="/service/ProviderGoodsService/addProviderGoodsEntity" desc="新增共产会商品实体" method="POST">
+				<parameters>
+					<parameter name="providerGoodsJson" type="java.lang.String" desc="共产会商品实体" defaultValue="" isRequired="true"></parameter>
+				</parameters>
+				<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/ProviderGoods.html">ProviderGoods对象数据结构说明</a>]]></returnVal>
+				<memo><![CDATA[]]></memo>
+			</inter>
+			
+			 <inter url="/service/ProviderGoodsService/updateProviderGoodsEntity" desc="修改共产会商品实体" method="POST">
+				<parameters>
+					<parameter name="providerGoodsJson" type="java.lang.String" desc="共产会商品实体" defaultValue="" isRequired="true"></parameter>
+				</parameters>
+				<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/ProviderGoods.html">ProviderGoods对象数据结构说明</a>]]></returnVal>
+				<memo><![CDATA[]]></memo>
+			</inter>
+		
+	</service>
+	
+	<service name="ShopMemberService" desc="店主会-会员服务">
+		<inter url="/service/ShopMemberService/getShopHistoryFee" desc="取得历史缴费记录列表" method="GET">
+			<parameters>
+				<parameter name="userid" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberShop.html">MemberShop对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopMemberService/getShopById" desc="根据id获得店铺" method="GET">
+			<parameters>
+				<parameter name="id" type="java.lang.String" desc="店铺id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberShop.html">MemberShop对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		<inter url="/service/ShopMemberService/getMyShop" desc="取得我的店铺" method="GET">
+			<parameters>
+				<parameter name="userid" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberShop.html">MemberShop对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		<inter url="/service/ShopMemberService/getApplyInfo" desc="获取店铺曾经提交的申请" method="GET">
+			<parameters>
+				<parameter name="userId" type="java.lang.String" desc="用户信息" defaultValue="2" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[
+			<textarea id="json_input" name="json_input" class="json_input" style="font-size: 11px !important; resize: both; width: 1078px; max-width: 1070px;" rows="32" spellcheck="false" placeholder="请输入需要检验的json字符串或URL">{
+    "data": {
+        "shopJson": {  -- 店铺基本信息
+            "praiseAmount": 0, -- 赞次数
+            "businessCategoryId": "",  -- 业务分类id
+            "commentAmount": 0, -- 评论总数
+            "isAudit": 0,  -- 是否通过审核
+            "cityId": "1", -- 城市id
+            "cityName": "全国2", -- 城市名称
+            "userid": "2",  -- 用户id
+            "isFrontShow": 1, -- 是否前端显示
+            "focusAmount": 0, -- 关注总数
+            "totalConsume": 0, -- 总消费数
+            "salesAmount": 0, -- 总销售额
+            "goodsAmountOnSale": 0, -- 再收商品总数
+            "level": 0, -- 店铺等级
+            "fansAmount": 0, -- 粉丝数
+            "shopName": "胡晓光的店铺（测试）", -- 店铺名称
+            "commentScore": 0, -- 评论总得分
+            "shopPhone": "13720003175", -- 店铺电话
+            "businessCategoryName": "", -- 业务类别名称
+            "id": "8a8284ee52f845d30152f85ef8350003", 店铺id
+            "isValid": 1, --是否有效
+            "isRecommend": 0 -- 是否推荐店铺
+        },
+        "shopDetailJson": { -- 店铺详细信息
+            "ownerName": "胡晓光", -- 店主名称
+            "identityType": "身份证", -- 店主证件类型
+            "cardHolderName": "胡晓光", -- 店主姓名
+            "shopId": "8a8284ee52f845d30152f85ef8350003", -- 店铺id（外键）
+            "ownerSex": 1, -- 性别， 1-男，2-女
+            "identityNum": "123", -- 身份证号码
+            "cardHolderPhone": "13720003175", --持卡人电话
+            "bankName": "工商银行望京支行", --银行名称
+            "id": "8a8284ee52f845d30152f85ef8d00004", id
+            "registTime": 1455865919696, -- 注册时间
+            "cardNum": "123" -- 银行卡号
+        }
+    },
+    "success": true
+}</textarea>
+			]]></returnVal>
+			<memo><![CDATA[给定注册用户的id，取得该注册用户曾经的申请信息]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopMemberService/submitApply" desc="提交店铺申请" method="POST">
+			<parameters>
+				<parameter name="userJson" type="java.lang.String" desc="用户信息" defaultValue="" isRequired="true"></parameter>
+				<parameter name="shopJson" type="java.lang.String" desc="店铺信息" defaultValue="" isRequired="true"></parameter>
+				<parameter name="shopDetailJson" type="java.lang.String" desc="店铺详细信息" defaultValue="" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的标准反馈+店铺id]]></returnVal>
+			<memo><![CDATA[需要提交三个参数，分别是：
+				    <p>userJson ={"id": "用户id","nickname": "昵称"}</p>
+				    <p>shopJson = {"shopName": "店铺名称","shopPhone": "店铺电话（联系电话）","businessCategoryId": "经营类别id","businessCategoryName": "经营类别名称","cityId": "所在地区"}</p>
+				    <p>shopDetailJson = {"ownerName": "店铺店主真实姓名","ownerSex": "店主性别，1-男，2-女","bankName": "发卡行","cardHolderName": "持卡人姓名","cardNum": "卡号","cardHolderPhone": "预留手机号","identityType": "证件类型","identityNum": "证件号码"}</p>
+				    
+				    <p style="font-weight:bold;font-size:16px;">测试数据如下：</p>
+				    <p>userJson={"id":"2","nickname":"胡晓光（测试）"}</p>
+					<p>shopJson={"shopName":"胡晓光的店铺（测试）", "shopPhone":"13720003175", "businessCategoryId": "", "businessCategoryName": "", "cityId":"1"}</p>
+					<p>shopDetailJson={"ownerName":"胡晓光","ownerSex":"1", "bankName": "工商银行望京支行","cardHolderName": "胡晓光","cardNum": "123","cardHolderPhone": "13720003175","identityType": "身份证","identityNum": "123"}</p>
+				]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopMemberService/updateShop" desc="更新店铺信息" method="POST">
+			<parameters>
+				<parameter name="shopJsonObject" type="java.lang.String" desc="店铺json对象" defaultValue="{}" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberShop.html">MemberShop对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopMemberService/getShopCommentsForPagelit" desc="取得店铺的评论" method="GET">
+			<parameters>
+				<parameter name="shopId" type="java.lang.String" desc="店铺id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberShop.html">MemberShop对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopMemberService/getShopNoticeForPagelit" desc="分页查询店铺通知公告" method="GET">
+			<parameters>
+				<parameter name="shopId" type="java.lang.String" desc="店铺id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberNews.html">MemberNews对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopMemberService/getShopNewsForPagelit" desc="分页查询店铺新闻" method="GET">
+			<parameters>
+				<parameter name="shopId" type="java.lang.String" desc="店铺id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberNews.html">MemberNews对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopMemberService/getShopNewsById" desc="取得店铺资讯" method="GET">
+			<parameters>
+				<parameter name="newsId" type="java.lang.String" desc="店铺id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberNews.html">MemberNews对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopMemberService/updateNews" desc="保存咨询信息" method="GET">
+			<parameters>
+				<parameter name="newsJson" type="java.lang.String" desc="新闻json对象" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberNews.html">MemberNews对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopMemberService/deleteNews" desc="删除咨询信息" method="GET">
+			<parameters>
+				<parameter name="newsId" type="java.lang.String" desc="新闻id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberNews.html">MemberNews对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopMemberService/updateNotice" desc="保存通知信息" method="GET">
+			<parameters>
+				<parameter name="noticeJson" type="java.lang.String" desc="通知json对象" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberNews.html">MemberNews对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopMemberService/deleteNotice" desc="删除通知信息" method="GET">
+			<parameters>
+				<parameter name="noticeId" type="java.lang.String" desc="新闻id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberNews.html">MemberNews对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopMemberService/getApprovedShopsForPagelit" desc="分页获取已审核通过的店铺列表" method="GET">
+			<parameters>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopMemberService/submitShopComment" desc="对一个店铺进行评价" method="GET">
+			<parameters>
+				<parameter name="shopId" type="java.lang.String" desc="店铺id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="content" type="java.lang.String" desc="评价内容" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="userid" type="java.lang.String" desc="评价者id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Comment.html">Comment对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopMemberService/getShopDetail" desc="取得店主会会员详细信息" method="GET">
+			<parameters>
+				<parameter name="shopId" type="java.lang.String" desc="店铺id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberShopDetail.html">MemberShopDetail对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+	</service>
+	
+	<service name="ShopGoodsService" desc="店主会-商品服务">
+		
+		<inter url="/service/ShopGoodsService/loadShopGoodsByKeywords" desc="店主取得店铺的商品" method="GET">
+			<parameters>
+				<parameter name="shopId" type="java.lang.String" desc="店铺id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="keyword" type="java.lang.String" desc=" 过滤关键字" defaultValue="" isRequired="false"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="分页页数 " defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopGoodsService/loadShopGoodsByCategoryId" desc="查看店铺的商品，分页显示" method="GET">
+			<parameters>
+				<parameter name="shopId" type="java.lang.String" desc=" 店铺id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="filter" type="java.lang.String" desc=" 过滤关键字" defaultValue="" isRequired="false"></parameter>
+				<parameter name="status" type="java.lang.String" desc=" 店铺状态" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopGoodsService/loadShopGoodsTopN" desc="获取一个店铺TopN商品" method="GET">
+			<parameters>
+				<parameter name="shopId" type="java.lang.String" desc=" 店铺id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="number" type="java.lang.String" desc="返回数量" defaultValue="5" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopGoodsService/searchGoodsForPagelit" desc="搜索商品" method="GET">
+			<parameters>
+				<parameter name="shopId" type="java.lang.String" desc="店铺id" defaultValue="1" isRequired="false"></parameter>
+				<parameter name="categoryId" type="java.lang.String" desc="分类id" defaultValue="" isRequired="false"></parameter>
+				<parameter name="provinceId" type="java.lang.String" desc="省id" defaultValue="" isRequired="false"></parameter>
+				<parameter name="cityId" type="java.lang.String" desc="城市id " defaultValue="" isRequired="false"></parameter>
+				<parameter name="keyword" type="java.lang.String" desc="商品关键字" defaultValue="" isRequired="false"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopGoodsService/getHotGoods" desc="取得热门商品" method="GET">
+			<parameters>
+				<parameter name="count" type="java.lang.String" desc="数量" defaultValue="5" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopGoodsService/getGoodsById" desc="获取一个商品详细信息" method="GET">
+			<parameters>
+				<parameter name="id" type="java.lang.String" desc="商品id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopGoodsService/updateGoods" desc="保存商品信息（如果id为空，则执行保存操作，如果id非空，则执行更新操作）" method="POST">
+			<parameters>
+				<parameter name="goodsJson" type="java.lang.String" desc="商品的json数据" defaultValue="{}" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopGoodsService/deleteGoodsById" desc="删除商品" method="POST">
+			<parameters>
+				<parameter name="goodsId" type="java.lang.String" desc="商品id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopGoodsService/putShelf" desc="商品上架操作" method="GET">
+			<parameters>
+				<parameter name="goodsId" type="java.lang.String" desc="商品id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopGoodsService/offShelf" desc="商品下架操作" method="GET">
+			<parameters>
+				<parameter name="goodsId" type="java.lang.String" desc="商品id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopGoodsService/getGoodsItems" desc="获取商品项目列表表" method="GET">
+			<parameters>
+				<parameter name="goodsId" type="java.lang.String" desc="商品id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopGoodsService/loadGoodsComment" desc="获取商品评论列表" method="GET">
+			<parameters>
+				<parameter name="goodsId" type="java.lang.String" desc="商品id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopGoodsService/loadAppliedShopGoodsForPagelit" desc="店铺待审核的商品列表" method="GET">
+			<parameters>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopGoodsService/loadApprovedShopGoodsForPagelit" desc="店铺已通过审核的商品列表" method="GET">
+			<parameters>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopGoodsService/approveShopGoods" desc="审核通过店主会商品" method="POST">
+			<parameters>
+				<parameter name="goodsId" type="java.lang.String" desc="店主会商品主键id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="auditUserId" type="java.lang.String" desc="审核人id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="auditUserName" type="java.lang.String" desc="审核人名字" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopGoodsService/rejectShopGoods" desc="审核驳回店主会商品" method="POST">
+			<parameters>
+				<parameter name="goodsId" type="java.lang.String" desc="店主会商品主键id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="auditUserId" type="java.lang.String" desc="审核人id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="auditUserName" type="java.lang.String" desc="审核人名字" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopGoodsService/getGoodsItemById" desc="依据条目id获取商品条目" method="GET">
+			<parameters>
+				<parameter name="id" type="java.lang.String" desc="商品条目id" defaultValue="店主会商品主键id" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopGoodsService/loadGoodsByMemberId" desc="依据成员获取商品" method="GET">
+			<parameters>
+				<parameter name="memberId" type="java.lang.String" desc="成员id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/ShopGoodsService/addShopGoodsEntity" desc="添加店主会商品" method="POST">
+			<parameters>
+				<parameter name="shopGoodsJson" type="java.lang.String" desc="店主会商品主表json串（一个Entity）" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="shopGoodsItemJson" type="java.lang.String" desc="店主会商品明细表json串（多个Entity）" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回标准反馈 例如：shopGoodsJson:
+															{"name":"sunny","orginalFee":8999,"realFee":6999,"shopId":"89757","shopName":"sunny","serviceScope":"5"}
+											             shopGoodsItemJson
+                                             [{"shopId":"1","providerGoodsId":"1","providerGoodsName":"qinlong0","shopGoodsId":"1"},{"shopId":"1","providerGoodsId":"1","providerGoodsName":"qinlong1","shopGoodsId":"1"}]]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+	</service>
+	
+	<service name="HealthyMemberService" desc="健康会-会员服务">
+		<inter url="/service/HealthyMemberService/submitApply" desc="提交入会申请" method="POST">
+			<parameters>
+				<parameter name="applyJson" type="java.lang.String" desc="提交的申请json对象" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberHealthy.html">MemberHealthy对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/HealthyMemberService/loadAppliedHealthyMembersForPagelit" desc="分页，返回健康会会员申请数组" method="GET">
+			<parameters>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberHealthy.html">MemberHealthy对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		
+		<inter url="/service/HealthyMemberService/loadApprovedHealthyMembersForPagelit" desc="翻页，返回已审核的健康会会员数组" method="GET">
+			<parameters>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/MemberHealthy.html">MemberHealthy对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+	</service>
+	
+	<service name="LoginService" desc="公共-登录服务">
+		<inter url="/service/LoginService/applogin" desc="登录接口" method="POST">
+			<parameters>
+				<parameter name="imei" type="java.lang.String" desc="手机串号" defaultValue="admin" isRequired="true"></parameter>
+				<parameter name="username" type="java.lang.String" desc="用户名" defaultValue="admin" isRequired="true"></parameter>
+				<parameter name="pwd" type="java.lang.String" desc="密码" defaultValue="12345678" isRequired="true"></parameter>
+				<parameter name="verifycode" type="java.lang.String" desc="验证码" defaultValue="" isRequired="false"></parameter>
+				<parameter name="pwdEncrypted" type="bool" desc="密码是否已经加密" defaultValue="false" isRequired="false"></parameter>
+				<parameter name="usertype" type="java.lang.String" desc="用户类型" defaultValue="user" isRequired="false"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的用户json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/User.html">User对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/LoginService/appHeartBeat" desc="app心跳" method="GET">
+			<parameters>
+				<parameter name="token" type="java.lang.String" desc="token" defaultValue="" isRequired="true"></parameter>
+				<parameter name="imei" type="java.lang.String" desc="手机串号" defaultValue="12345" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的用户json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/User.html">User对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+	</service>
+	
+	<service name="forgetpwd" desc="公共-忘记密码服务">
+		<inter url="/forgetpwd" desc="登录接口" method="POST">
+			<parameters>
+				<parameter name="mobile" type="java.lang.String" desc="手机号" defaultValue="13720003175" isRequired="true"></parameter>
+				<parameter name="verifycode" type="java.lang.String" desc="验证码" defaultValue="" isRequired="false"></parameter>
+				<parameter name="newpwd" type="bool" desc="新密码" defaultValue="12345678" isRequired="false"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的用户json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/User.html">User对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+	</service>
+	
+	<service name="RegistService" desc="公共-注册服务">
+		<inter url="/regist/appRegist" desc="登录接口" method="POST">
+			<parameters>
+				<parameter name="mobile" type="java.lang.String" desc="手机号" defaultValue="13720003175" isRequired="true"></parameter>
+				<parameter name="verifyCode" type="java.lang.String" desc="验证码（可以为空）" defaultValue="" isRequired="false"></parameter>
+				<parameter name="imei" type="java.lang.String" desc="手机串号" defaultValue="" isRequired="false"></parameter>
+				<parameter name="password" type="java.lang.String" desc="密码" defaultValue="12345678" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的用户json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/User.html">User对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+	</service>
+	
+	<service name="AppUploadController" desc="公共-上传文件">
+		<inter url="/upfile" desc="登录接口" method="POST">
+			<parameters>
+				<parameter name="type" type="java.lang.String" desc="类型，可以是image|video" defaultValue="admin" isRequired="true"></parameter>
+				<parameter name="scalesize" type="java.lang.String" desc="裁剪尺寸" defaultValue="300x150" isRequired="true"></parameter>
+				<parameter name="file1" type="java.lang.String" desc="文件，可以是任何值" defaultValue="" isRequired="false"></parameter>
+				<parameter name="strictLength" type="bool" desc="是否检查上传文件大小" defaultValue="false" isRequired="false"></parameter>
+				<parameter name="maxlen" type="java.lang.String" desc="允许的上传文件大小" defaultValue="user" isRequired="false"></parameter>
+				<parameter name="strictSize" type="bool" desc="是否检查图片尺寸" defaultValue="false" isRequired="false"></parameter>
+				<parameter name="maxsize" type="java.lang.String" desc="图片的最大尺寸" defaultValue="user" isRequired="false"></parameter>
+			</parameters>
+			<returnVal><![CDATA[
+				<h3>参数说明</h3>
+				<p>type -- 类型，可选择image|video，可以为空，默认是image</p>
+				<p>scalesize -- 类型，可选择缩放大小，可以为空，为空时不拉伸</p>
+				<p>file1 -- 文件，以实际上传文件为准，可以上传多个</p>
+				<p>strictLength -- 是否检查上传文件大小，可以为空，为空时不检查上传文件大小</p>
+				<p>maxlen -- 单个上传文件最大值，可以为空，为空时最大上传5M</p>
+				<p>strictSize -- 是否检查上传文件尺寸，可以为空，为空时上传的图片不能超过2000x2000像素</p>
+				<p>maxsize -- 图片尺寸限制，可以为空，为空时图片尺寸不能超过2000x2000像素</p>
+			]]></returnVal>
+			<memo><![CDATA[
+			<h3>返回值说明：</h3>
+			<p><textarea style="width:800px;height:400px;">
+			{
+    "data": [
+        {
+            "cBh": "ff808081533b365a01533b5df5780152",
+            "cFlbh": "-1",
+            "cKzm": "png",
+            "cLx": "PIC",
+            "cWjljXd": "http://localhost:80802016/03/03/ff808081533b365a01533b5df5780153.png",
+            "cYwjm": "home_wcp.png",
+            "dScsj": 1456989926776,
+            "id": "ff808081533b365a01533b5df5780152",
+            "nDjcs": 0,
+            "nFxcs": 0,
+            "nFz": 0,
+            "nPlcs": 0,
+            "nSccs": 0,
+            "nSfkf": 0,
+            "nXzcs": 0,
+            "nYwjdx": 4722
+        }
+    ],
+    "success": true
+}
+			</textarea></p>
+			
+			]]></memo>
+		</inter>
+	</service>
+	
+	<service name="SendSMS" desc="公共-手机校验码发送服务">
+		<inter url="/wbs/sendMobileVerifyCode" desc="发送手机验证码" method="POST">
+			<parameters>
+				<parameter name="phone" type="java.lang.String" desc="手机号" defaultValue="13720003175" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回操作标志]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/wbs/is_verify_code_valid" desc="校验手机验证码" method="POST">
+			<parameters>
+				<parameter name="mobile" type="java.lang.String" desc="手机号" defaultValue="13720003175" isRequired="true"></parameter>
+				<parameter name="verifyCode" type="java.lang.String" desc="验证码" defaultValue="222323" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回操作标志]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+	</service>
+	
+	<service name="AreaService" desc="公共-地区服务">
+		<inter url="/service/AreaService/getAreaById" desc="取得一个地区，连带该地区的下级地区" method="GET">
+			<parameters>
+				<parameter name="areaId" type="java.lang.String" desc="地区id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Area.html">Area对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/AreaService/getAllAreas" desc="取得所有地区" method="GET">
+			<parameters>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Area.html">Area对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+	</service>
+	
+	<service name="HealthyCategoryService" desc="公共-就医服务业务分类">
+		<inter url="/service/HealthyCategoryService/getHealthyCategories" desc="返回业务分类" method="GET">
+			<parameters>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/CodeHealthyCategory.html">CodeHealthyCategory对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/HealthyCategoryService/getHealthyCategory" desc="根据id获取一个分类" method="GET">
+			<parameters>
+				<parameter name="id" type="java.lang.String" desc="id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/CodeHealthyCategory.html">CodeHealthyCategory对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/HealthyCategoryService/createHealthyCategory" desc="创建分类" method="POST">
+			<parameters>
+				<parameter name="parentId" type="java.lang.String" desc="父亲id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="categoryJson" type="java.lang.String" desc="json对象" defaultValue="1" isRequired="false"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/CodeHealthyCategory.html">CodeHealthyCategory对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		
+		<inter url="/service/HealthyCategoryService/updateHealthyCategory" desc="更新业务分类" method="POST">
+			<parameters>
+				<parameter name="categoryJson" type="java.lang.String" desc="需要更新的业务分类json" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/CodeHealthyCategory.html">CodeHealthyCategory对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/HealthyCategoryService/deleteCategory" desc="删除一个业务分类" method="GET">
+			<parameters>
+				<parameter name="categoryId" type="java.lang.String" desc="分类id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/CodeHealthyCategory.html">CodeHealthyCategory对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+	</service>
+	
+	<service name="CmsService" desc="其他-信息服务">
+		<inter url="/service/CmsService/loadArticlesByChannelIdForPaglit" desc="取得一个栏目下的全部信息" method="GET">
+			<parameters>
+				<parameter name="channelId" type="java.lang.String" desc="栏目id，指定要获取哪个栏目的信息" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="要获取的页数，分页显示时有用，Top的时候传递1即可" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/CmsArticle.html">CmsArticle对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/CmsService/searchArticle" desc="根据关键字搜搜信息" method="GET">
+			<parameters>
+				<parameter name="keyword" type="java.lang.String" desc="关键字" defaultValue="绿魔方" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="要获取的页数，分页显示时有用，Top的时候传递1即可" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/CmsArticle.html">CmsArticle对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/CmsService/getArticleById" desc="根据id取得信息" method="GET">
+			<parameters>
+				<parameter name="articleId" type="java.lang.String" desc="信息id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/CmsArticle.html">CmsArticle对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/CmsService/loadChannelsForPagelit" desc="分页取得栏目列表" method="GET">
+			<parameters>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/CmsChannel.html">CmsChannel对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/CmsService/loadChannels" desc="取得所有栏目列表" method="GET">
+			<parameters>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/CmsChannel.html">CmsChannel对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+	</service>
+	
+	<service name="CommentService" desc="其他-评论服务">
+		<inter url="/service/CommentService/getCommentsByForeignIdTopN" desc="取得TopN评论数据" method="GET">
+			<parameters>
+				<parameter name="foreignId" type="java.lang.String" desc="你要取得哪条记录的评论" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="topN" type="java.lang.String" desc="你要取得多少条数目" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Comment.html">Comment对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/CommentService/loadCommentsByForeignId" desc="分页取得一个对象的评论" method="GET">
+			<parameters>
+				<parameter name="foreignId" type="java.lang.String" desc="对象id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="要获取的页数，分页显示时有用，Top的时候传递1即可" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Comment.html">Comment对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/CommentService/submitComment" desc="提交评论" method="POST">
+			<parameters>
+				<parameter name="userid" type="java.lang.String" desc="评论者ID" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="content" type="java.lang.String" desc="评论内容" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="commentObjId" type="java.lang.String" desc="被评论对象id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="commentObjName" type="java.lang.String" desc="被评论对象类名" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="score" type="java.lang.String" desc="打分" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象，标识成功与否]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+	</service>
+	
+	
+	<service name="CouponService" desc="其他-券服务">
+		<inter url="/service/CouponService/getShopCoupons" desc="分页取得店铺发布的优惠券" method="GET">
+			<parameters>
+				<parameter name="shopId" type="java.lang.String" desc="店铺id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Coupon.html">Coupon对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/CouponService/getMyCoupons" desc="取得我的优惠券" method="GET">
+			<parameters>
+				<parameter name="userid" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="要获取的页数，分页显示时有用，Top的时候传递1即可" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Coupon.html">Coupon对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/CouponService/getCouponById" desc="根据编号获取优惠券" method="GET">
+			<parameters>
+				<parameter name="id" type="java.lang.String" desc="优惠券id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Coupon.html">Coupon对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		
+		<inter url="/service/CouponService/getCouponBySerial" desc="根据优惠券号码获取优惠安全" method="GET">
+			<parameters>
+				<parameter name="coupon" type="java.lang.String" desc="优惠券号码" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Coupon.html">Coupon对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/CouponService/saveCoupon" desc="创建一个优惠券并保存" method="POST">
+			<parameters>
+				<parameter name="couponJson" type="java.lang.String" desc="优惠券json对象信息" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Coupon.html">Coupon对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/CouponService/updateCoupon" desc="更新一个现有的优惠券" method="POST">
+			<parameters>
+				<parameter name="couponJson" type="java.lang.String" desc="优惠券json对象信息" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Coupon.html">Coupon对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/CouponService/deleteCouponById" desc="删除一个优惠券" method="GET">
+			<parameters>
+				<parameter name="id" type="java.lang.String" desc="优惠券id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Coupon.html">Coupon对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		
+		<inter url="/service/CouponService/isValidSerial" desc="验证一个优惠券卡号是否有效" method="GET">
+			<parameters>
+				<parameter name="serial" type="java.lang.String" desc="优惠券卡号" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Coupon.html">Coupon对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/CouponService/isTerminate" desc="验证一个优惠券卡号是否到期" method="GET">
+			<parameters>
+				<parameter name="couponId" type="java.lang.String" desc="优惠券id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Coupon.html">Coupon对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/CouponService/freezeCoupon" desc="冻结一个优惠券" method="GET">
+			<parameters>
+				<parameter name="couponId" type="java.lang.String" desc="优惠券id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="userId" type="java.lang.String" desc="为谁冻结优惠券，指用户id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Coupon.html">Coupon对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+	</service>
+	
+	
+	<service name="FeedbackService" desc="其他-用户反馈服务">
+		<inter url="/service/FeedbackService/getShopCoupons" desc="根据id获取反馈信息" method="GET">
+			<parameters>
+				<parameter name="feedbackId" type="java.lang.String" desc="反馈id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/FeedBack.html">FeedBack对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/FeedbackService/getFeedbacksForPagelit" desc="分页取得用户反馈" method="GET">
+			<parameters>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/FeedBack.html">FeedBack对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/FeedbackService/submitFeedback" desc="提交一个用户反馈" method="POST">
+			<parameters>
+				<parameter name="userid" type="java.lang.String" desc="提交者id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="title" type="java.lang.String" desc="标题" defaultValue="1" isRequired="false"></parameter>
+				<parameter name="content" type="java.lang.String" desc="内容" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="phone" type="java.lang.String" desc="提交者电话" defaultValue="1" isRequired="false"></parameter>
+				<parameter name="qq" type="java.lang.String" desc="提交者qq号码" defaultValue="1" isRequired="false"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/FeedBack.html">FeedBack对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		
+		<inter url="/service/FeedbackService/deleteFeedback" desc="删除反馈信息" method="GET">
+			<parameters>
+				<parameter name="feedbackId" type="java.lang.String" desc="反馈id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/FeedBack.html">FeedBack对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+	</service>
+	
+	<service name="MeetingService" desc="会议服务">
+		<inter url="/service/MeetingService/createMeetRoot" desc="创建一个根会议室" method="POST">
+			<parameters>
+				<parameter name="meetingName" type="java.lang.String" desc="会议名称" defaultValue="这是一个会议" isRequired="true"></parameter>
+				<parameter name="password" type="java.lang.String" desc="密码（可以为空）" defaultValue="" isRequired="false"></parameter>
+				<parameter name="topic" type="java.lang.String" desc="会议议题" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="maxPersonCount" type="java.lang.String" desc="最大与会人员数" defaultValue="5" isRequired="true"></parameter>
+				<parameter name="meetingModel" type="java.lang.String" desc="会议模式 1-视频会议，2-传统会议模式" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="type" type="java.lang.String" desc="1-公共会议室，2-私人会议室" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="status" type="java.lang.String" desc="0-未开始，1-已开始，2-已结束" defaultValue="0" isRequired="true"></parameter>
+				<parameter name="creatorId" type="java.lang.String" desc="创建者id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="beginTime" type="java.lang.String" desc="开始时间（可以为空）" defaultValue="2016-02-19 18:32:32" isRequired="true"></parameter>
+				<parameter name="endTime" type="java.lang.String" desc="结束时间（可以为空）" defaultValue="2016-02-19 18:32:32" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Meeting.html">Meeting对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/MeetingService/startMeeting" desc="开始一个会议" method="GET">
+			<parameters>
+				<parameter name="meetingId" type="java.lang.String" desc="会议室id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Meeting.html">Meeting对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/MeetingService/closeMeeting" desc="关闭会议室" method="GET">
+			<parameters>
+				<parameter name="meetingId" type="java.lang.String" desc="会议室id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Meeting.html">Meeting对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		
+		<inter url="/service/MeetingService/enterMeeting" desc="进入会议室" method="GET">
+			<parameters>
+				<parameter name="meetingId" type="java.lang.String" desc="会议id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="userid" type="java.lang.String" desc="进入会议室人的id" defaultValue="1" isRequired="true"></parameter>
+				
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Meeting.html">Meeting对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/MeetingService/quitMeeting" desc="退出会议室" method="GET">
+			<parameters>
+				<parameter name="meetingId" type="java.lang.String" desc="会议室id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="userid" type="java.lang.String" desc="退出会议室人的id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Meeting.html">Meeting对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/MeetingService/inviteUser" desc="要请一个人进入会议室" method="GET">
+			<parameters>
+				<parameter name="meetingId" type="java.lang.String" desc="会议室id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="userid" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Meeting.html">Meeting对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/MeetingService/setMeetingPassword" desc="设置会议室密码" method="GET">
+			<parameters>
+				<parameter name="meetingId" type="java.lang.String" desc="会议室id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="password" type="java.lang.String" desc="会议室密码" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Meeting.html">Meeting对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/MeetingService/loadMeetingMessage" desc="获取会议室消息" method="GET">
+			<parameters>
+				<parameter name="meetingId" type="java.lang.String" desc="会议室id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="分页页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Meeting.html">Meeting对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/MeetingService/postTextMessage" desc="发送文本消息" method="GET">
+			<parameters>
+				<parameter name="meetingId" type="java.lang.String" desc="会议室id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="parentMessageid" type="java.lang.String" desc="父消息id" defaultValue="" isRequired="false"></parameter>
+				<parameter name="posterId" type="java.lang.String" desc=" 发布者id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="content" type="java.lang.String" desc="消息内容" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Meeting.html">Meeting对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/MeetingService/postVoiceMessage" desc="发送语音消息" method="GET">
+			<parameters>
+				<parameter name="meetingId" type="java.lang.String" desc="会议室id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="parentMessageid" type="java.lang.String" desc="父消息id" defaultValue="" isRequired="false"></parameter>
+				<parameter name="posterId" type="java.lang.String" desc=" 发布者id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="content" type="java.lang.String" desc="消息内容" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Meeting.html">Meeting对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/MeetingService/supportMessage" desc="对消息点赞" method="GET">
+			<parameters>
+				<parameter name="messageid" type="java.lang.String" desc="会议室id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Meeting.html">Meeting对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+	</service>
+	
+	<service name="OrderService" desc="订单服务">
+		<inter url="/service/OrderService/loadBuierOrders" desc="取得我的订单" method="GET">
+			<parameters>
+				<parameter name="userid" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="filter" type="java.lang.String" desc="订单类型(20 - 已下单，未付款，21 - 付款中， 22 - 已完成支付，待处理)" defaultValue="20" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/OrderService/getBuierOrder" desc="取得一个订单的详细信息" method="GET">
+			<parameters>
+				<parameter name="orderid" type="java.lang.String" desc="订单id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/OrderService/deleteBuierOrder" desc=" 删除订单" method="GET">
+			<parameters>
+				<parameter name="orderid" type="java.lang.String" desc="订单id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		
+		<inter url="/service/OrderService/createOrder" desc="结账操作" method="POST">
+			<parameters>
+				<parameter name="userid" type="java.lang.String" desc="购买者id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="shoppingItemsJson" type="java.lang.String" desc="定向项json数组" defaultValue="" isRequired="true"></parameter>
+				<parameter name="couponId" type="java.lang.String" desc="优惠券id" defaultValue="" isRequired="false"></parameter>
+				<parameter name="receiverId" type="java.lang.String" desc="快递接收人id" defaultValue="" isRequired="false"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/OrderService/submitOrderInvoiceApply" desc="提交发票申请" method="GET">
+			<parameters>
+				<parameter name="orderid" type="java.lang.String" desc="订单id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="invoiceJson" type="java.lang.String" desc="订单json数据" defaultValue="[]" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/OrderService/auditOrderInvoice" desc="审核发票申请信息" method="GET">
+			<parameters>
+				<parameter name="invoiceId" type="java.lang.String" desc="发票id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="auditorId" type="java.lang.String" desc="审核者id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/OrderService/unAuditOrderInvoice" desc="拒绝发票申请" method="GET">
+			<parameters>
+				<parameter name="invoiceId" type="java.lang.String" desc="发票id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="auditorId" type="java.lang.String" desc="审核者id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/OrderService/publishOrderInvoice" desc="发布发票" method="GET">
+			<parameters>
+				<parameter name="invoiceId" type="java.lang.String" desc="发票id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="publisherId" type="java.lang.String" desc="操作人" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/OrderService/unPublishOrderInvoice" desc="取消发布发票" method="GET">
+			<parameters>
+				<parameter name="invoiceId" type="java.lang.String" desc="发票id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="publisherId" type="java.lang.String" desc="操作人" defaultValue="" isRequired="false"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/OrderService/getOrderInvoice" desc="取得订单的发票信息" method="GET">
+			<parameters>
+				<parameter name="orderid" type="java.lang.String" desc="订单id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/OrderService/loadApplyOrderInvoice" desc="返回已申请的发票列表" method="GET">
+			<parameters>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/OrderService/loadPublishedOrderInvoice" desc="返回已完结的发票" method="GET">
+			<parameters>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/OrderService/updateOrderInvoice" desc="修改订单发票信息" method="GET">
+			<parameters>
+				<parameter name="orderid" type="java.lang.String" desc="订单id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="invoiceJson" type="java.lang.String" desc="订单json对象" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/OrderService/getOrderMailing" desc="取得一个订单的快递信息" method="GET">
+			<parameters>
+				<parameter name="orderid" type="java.lang.String" desc="订单id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/OrderService/loadShopOrdersForPagelit" desc="取得店铺订单" method="GET">
+			<parameters>
+				<parameter name="shopid" type="java.lang.String" desc="店铺id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/OrderService/getShopOrder" desc="根据主键取得一个订单" method="GET">
+			<parameters>
+				<parameter name="shopOrdeId" type="java.lang.String" desc="店铺订单id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/OrderService/deleteShopOrder" desc="删除订单" method="GET">
+			<parameters>
+				<parameter name="shopOrdeId" type="java.lang.String" desc="店铺订单id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/OrderService/loadProviderOrdersForPagelit" desc="取得供应商订单列表" method="GET">
+			<parameters>
+				<parameter name="providerId" type="java.lang.String" desc="供应商id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/OrderService/getProviderOrder" desc="取得供应商订单列表" method="GET">
+			<parameters>
+				<parameter name="providerOrderId" type="java.lang.String" desc="供应商的订单id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/OrderService/deleteProviderOrder" desc="取得供应商订单详细信息" method="GET">
+			<parameters>
+				<parameter name="providerOrderId" type="java.lang.String" desc="供应商订单id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+	</service>
+	
+	<service name="PaymentService" desc="支付服务">
+		<inter url="/service/PaymentService/loadAvaliablePaymentMethod" desc="获取支持的支付方式（已完成测试）" method="GET">
+			<parameters>
+				<parameter name="clientType" type="java.lang.String" desc="客户端类型" defaultValue="app" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[
+			<h3>参数说明</h3>
+			<p>clientType -- 客户端类型，取值为：app、wap、pc。</p>
+			<p style="color:red">本方法可返回手机客户端所支持的支付方式，或者手机网页所支持的支付方式，或者网站所支持的支付方式。不同的参数，返回不同的渠道列表数据。
+			目前可支持支付宝App支付、支付宝手机网页支付、支付宝pc支付、微信App支付、微信手机网页支付、微信pc支付、微信公众号支付、银联手机支付、银联手机网页支付、银联pc支付、Apple Pay支付、百度钱包App支付、百度钱包手机网页支付、百度钱包pc支付、京东pc支付</p>
+			]]></returnVal>
+			<memo><![CDATA[返回的Json如下所示：
+			<p>
+				<textarea style="width:800px;height:400px;">{
+    "data": [
+        {
+            "id": "8a8284ee531b07ad01531b17fb8b0000",
+            "desc": "支付宝手机支付",
+            "order": 1,
+            "indefier": "alipay",
+            "appLogo1": "http://localhost:8080/2016/02/26/8a8284ee531b29de01531b311c900001.JPG",
+            "name": "支付宝手机支付",
+            "enable": 1
+        },
+        {
+            "id": "8a8284ee531b07ad01531b24198d0001",
+            "desc": "微信支付",
+            "order": 2,
+            "indefier": "wx",
+            "appLogo1": "http://localhost:8080/2016/02/26/8a8284ee531b3d5901531b3deac20001.JPG",
+            "name": "微信支付",
+            "enable": 1
+        },
+        {
+            "id": "8a8284ee531b294301531b29e5720000",
+            "desc": "银联安全渠道支付（2015年1月1日后的银联新商户使用。若有疑问，请与Ping++或者相关的收单行联系）",
+            "order": 3,
+            "indefier": "upacp",
+            "appLogo1": "http://localhost:8080/2016/02/26/8a8284ee531b29de01531b29dea00000.JPG",
+            "name": "银联支付",
+            "enable": 1
+        }
+    ],
+    "success": true
+}
+				</textarea>
+			</p>
+			]]></memo>
+		</inter>
+		
+		<inter url="/service/PaymentService/checkout" desc="结算（已完成测试）" method="POST">
+			<parameters>
+				<parameter name="paymentSubject" type="java.lang.String" desc="支付科目" defaultValue="member_fee" isRequired="true"></parameter>
+				<parameter name="paymentMethod" type="java.lang.String" desc="支付方式" defaultValue="alipay" isRequired="true"></parameter>
+				<parameter name="type" type="java.lang.String" desc="类型" defaultValue="0x0100" isRequired="true"></parameter>
+				<parameter name="paierId" type="java.lang.String" desc="支付者id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="fee" type="java.lang.String" desc="支付金额" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="subject" type="java.lang.String" desc="该笔支付的名称" defaultValue="2016年会员费" isRequired="true"></parameter>
+				<parameter name="body" type="java.lang.String" desc="描述信息" defaultValue="2016年会员费，优惠多多，欢乐无限" isRequired="true"></parameter>
+				<parameter name="description" type="java.lang.String" desc="备注信息" defaultValue="没啥可备注的" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[
+				<h2>返回值说明</h2>
+				<p>
+					<textarea style="width:800px;height:400px;">
+						{
+						    "data": {
+						        "app": "app_vTaX1SbTqPaDW100",
+						        "body": "2016年会员费优惠多多欢乐无限",
+						        "subject": "2016年会员费",
+						        "extra": {},
+						        "object": "charge",
+						        "credential": {
+						            "alipay": {
+						                "orderInfo": "_input_charset=\"utf-8\"&body=\"2016年会员费优惠多多欢乐无限\"&it_b_pay=\"2016-02-27 19:44:08\"¬ify_url=\"https%3A%2F%2Fapi.pingxx.com%2Fnotify%2Fcharges%2Fch_D0yjPSrLOuD4H8iLaTG4WTOK\"&out_trade_no=\"8a8284ee531d612a01531d64940e0002\"&partner=\"2008008333375169\"&payment_type=\"1\"&seller_id=\"2008008333375169\"&service=\"mobile.securitypay.pay\"&subject=\"2016年会员费\"&total_fee=\"0.01\"&sign=\"anpEQ3lIMTBDdWJMOXE5eUw0S1duekxL\"&sign_type=\"RSA\""
+						            },
+						            "object": "credential"
+						        },
+						        "currency": "cny",
+						        "id": "ch_D0yjPSrLOuD4H8iLaTG4WTOK",
+						        "amount": 1,
+						        "paid": false,
+						        "refunded": false,
+						        "orderNo": "8a8284ee531d612a01531d64940e0002",
+						        "timeExpire": 1456573448,
+						        "created": 1456487048,
+						        "description": "没啥可备注的",
+						        "amountRefunded": 0,
+						        "refunds": {
+						            "hasMore": false,
+						            "uRL": "/v1/charges/ch_D0yjPSrLOuD4H8iLaTG4WTOK/refunds",
+						            "data": [],
+						            "object": "list"
+						        },
+						        "livemode": false,
+						        "clientIp": "10.2.4.110",
+						        "amountSettle": 1,
+						        "channel": "alipay",
+						        "metadata": {}
+						    },
+						    "success": true
+						}
+					</textarea>
+				</p>
+			]]></returnVal>
+			<memo><![CDATA[
+				<h2>参数说明：</h2>
+				<p>paymentSubject -- 支付科目，member_fee会费，manager_fee管理费，user_charge用户充值，goods-商品购买 </p>
+				<p>paymentMethod -- 支付渠道，服务器端反回的支付方式唯一标识，例如微信支付是wx，支付宝支付是alipay </p>
+				<p>type -- 类型， 0x0100-供产会会员费，0x1000-店主会会员费 </p>
+				<p>paierId -- 支付者id </p>
+				<p>fee -- 支付的金额，以分为单位 </p>
+				<p>subject -- 名称，例如：“2016年会员费” </p>
+				<p>body -- 名称，例如：“详细描述信息” </p>
+				<p>description -- 额外的信息</p>
+				<div style="color:red;font-size:14px;">真实交易点击下面链接：<a href="/payment/example-wap/views/demo-pc.htm" target="_blank">真实交易示例</a></div>
+			]]></memo>
+		</inter>
+		<inter url="/service/PaymentService/directPay" desc="账户余额支付（已完成测试）" method="POST">
+			<parameters>
+				<parameter name="chargeJsonObj" type="java.lang.String" desc="charge对象" defaultValue="" isRequired="true"></parameter>
+				<parameter name="password" type="java.lang.String" desc="账户密码" defaultValue="" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/PaymentService/loadPaymentsForPagelit" desc="查看平台内所有发生的支付记录" method="GET">
+			<parameters>
+				<parameter name="pageNum" type="java.lang.String" desc="分页" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+	</service>
+	
+	<service name="WithdrawService" desc="提现服务">
+		<inter url="/service/WithdrawService/applyWithdraw" desc="申请提现（已完成测试）" method="POST">
+			<parameters>
+				<parameter name="userid" type="java.lang.String" desc="分页" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="password" type="java.lang.String" desc="密码" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="bankcardId" type="java.lang.String" desc="卡ID" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="amount" type="java.lang.String" desc="提现金额" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[
+				<h5>返回值说明</h5>
+				{data :{ errorno:"-1"},
+				 success:false
+				}
+				<p>error=-1代表未设置账户取款密码，需跳转到设置密码界面</p>
+				<p>error=-2账户余额不足</p>
+				<p>error=-3取款密码不正确，需提示用户</p>
+			]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+	</service>
+	
+	<service name="UserAccountService" desc="账户服务">
+		<inter url="/service/UserAccountService/setAccountPassword" desc="设置账户密码" method="POST">
+			<parameters>
+				<parameter name="token" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="password" type="java.lang.String" desc="密码" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/UserAccountService/setAccountPassword" desc="设置账户密码" method="POST">
+			<parameters>
+				<parameter name="token" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="password" type="java.lang.String" desc="密码" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/UserAccountService/checkPassword" desc="检查密码是否正确" method="POST">
+			<parameters>
+				<parameter name="token" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pwd" type="java.lang.String" desc="旧密码" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/UserAccountService/updateAccountPassword" desc="更新账户密码" method="POST">
+			<parameters>
+				<parameter name="token" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="newpwd" type="java.lang.String" desc="新密码" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		<inter url="/service/UserAccountService/checkAccountSecurity" desc="检查用户账户安全" method="POST">
+			<parameters>
+				<parameter name="token" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[
+				<h5>返回值说明</h5>
+				<p>errorno : -1 说明未设置账户取款密码，需跳转到设置密码界面</p>
+			]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+	</service>
+	
+	<service name="MemberFeeCategoryService" desc="支付-费用科目">
+		<inter url="/service/MemberFeeCategoryService/loadFeeCategory" desc="获取支付科目" method="GET">
+			<parameters>
+				<parameter name="usertype" type="java.lang.String" desc="用户类型，可以为空" defaultValue="4096" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[
+			<h3>参数说明</h3>
+			<p>usertype -- 客户端类型，取值为：0x1000 - 店主会会员、0x0100-供产会会员、0x0010-健康会会员。</p>
+			<p style="color:red">本方法可返回所有预定义的费用科目。例如当参数为0x1000时，返回的是店主会应该缴纳的“会员费”、“管理费”两种。如果为空，则返回全部的缴费科目</p>
+			]]></returnVal>
+			<memo><![CDATA[返回的Json如下所示：
+			<p>
+				<textarea style="width:800px;height:400px;">{
+    "data": [
+        {
+            "suitUserType": 4096, 
+            "id": "ff808081533596420153359cb5b30002", 
+            "fee": 580000, 
+            "name": "店主会会费"
+        }, 
+        {
+            "suitUserType": 4096, 
+            "id": "ff808081533596420153359ce1440003", 
+            "fee": 380000, 
+            "name": "店主会管理费"
+        }
+    ], 
+    "success": true
+}
+				</textarea>
+			</p>
+			]]></memo>
+		</inter>
+	</service>
+	<service name="RequirementService" desc="机会空间">
+		<inter url="/service/RequirementService/submitText" desc="发布" method="POST">
+			<parameters>
+				<parameter name="title" type="java.lang.String" desc="标题" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="content" type="java.lang.String" desc="内容" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="posterId" type="java.lang.String" desc="发布者id " defaultValue="1" isRequired="true"></parameter>
+				<parameter name="requirementType" type="java.lang.String" desc="需求类别， 1-我要， 2-我有, 3-产品" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/RequirementService/submitPhoto" desc="发布图片" method="POST">
+			<parameters>
+				<parameter name="title" type="java.lang.String" desc="标题" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="content" type="java.lang.String" desc="内容" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="multipart" type="java.lang.String" desc="图片，多个图片以分号分割" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="posterId" type="java.lang.String" desc="发布者id " defaultValue="1" isRequired="true"></parameter>
+				<parameter name="requirementType" type="java.lang.String" desc="需求类别， 1-我要， 2-我有, 3-产品" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/RequirementService/submitVideo" desc="发布视频" method="POST">
+			<parameters>
+				<parameter name="title" type="java.lang.String" desc="标题" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="content" type="java.lang.String" desc="内容" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="multipart" type="java.lang.String" desc="图片，多个图片以分号分割" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="posterId" type="java.lang.String" desc="发布者id " defaultValue="1" isRequired="true"></parameter>
+				<parameter name="requirementType" type="java.lang.String" desc="需求类别， 1-我要， 2-我有, 3-产品" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/RequirementService/replyRequirement" desc="回复需求" method="POST">
+			<parameters>
+				<parameter name="rid" type="java.lang.String" desc="对应的需求id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="title" type="java.lang.String" desc=" 标题" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="content" type="java.lang.String" desc=" 内容" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="posterId" type="java.lang.String" desc="发布者id " defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/RequirementService/loadReplies" desc="取得回复列表" method="GET">
+			<parameters>
+				<parameter name="rid" type="java.lang.String" desc="需求id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc=" 页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/RequirementService/deleteRequirement" desc="删除需求" method="GET">
+			<parameters>
+				<parameter name="rid" type="java.lang.String" desc="需求id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/RequirementService/supportRequirement" desc="赞一个需求" method="GET">
+			<parameters>
+				<parameter name="rid" type="java.lang.String" desc="需求id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/RequirementService/loadRequirement" desc="分页返回需求json数组" method="GET">
+			<parameters>
+				<parameter name="type" type="java.lang.String" desc="1-我要，2-我有，3-产品" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="分页" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[
+			<h3>返回值说明</h3>
+			<textarea style="width:800px;height:400px;">
+				{
+    "page": {
+        "firstResult": 0,
+        "currentPageIndex": 1,
+        "pageSize": 15,
+        "showRows": 0,
+        "rowCount": 1,
+        "maxResults": 15
+    },
+    "data": [
+        {
+            "label": "今天",
+            "reqs": [
+                {
+                    "id": "ff808081533a8db301533a8efb1e0001",
+                    "title": "信息标题",
+                    "content": "信息的内容",
+                    "posterId": "提交者id",
+                    "posterName": "提交者姓名",
+                    "posterPhoto": "提交者照片",
+                    "praiseAmount": 0(关注数),
+                    "replyAmount": 0(评论数）,
+                    "reqType": 1 类型，1-我要，2-我有，3-产品发布,
+                    "posterIp": "发布信息者ip地址",
+                    "contentType": 1 信息类别，1-文字消息，2-图片信息，3-视频信息,
+                    "postTime": 1456976362270 提交时间，Unix时间戳
+                }
+            ]
+        }
+    ],
+    "success": true
+}
+			</textarea>
+			]]></returnVal>
+			<memo><![CDATA[
+				<h3>参数说明</h3>
+				<p>type 1-我要，2-我有，3-产品 ，可以填写0或复数，代表不分类</p>
+			]]></memo>
+		</inter>
+		
+		
+		<inter url="/service/RequirementService/getRequirement" desc=" 根据id读取一条需求" method="POST">
+			<parameters>
+				<parameter name="rid" type="java.lang.String" desc="需求id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/RequirementService/readRequirement" desc="根据主键编号获取需求，本方法会增加requirement的点击数" method="POST">
+			<parameters>
+				<parameter name="rid" type="java.lang.String" desc="需求id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+	</service>
+	
+	<service name="UserCollectionService" desc="其他-用户收藏服务">
+		<inter url="/service/UserCollectionService/getUserCollectGoods" desc="取得用户收藏的商品" method="GET">
+			<parameters>
+				<parameter name="userId" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/UserCollectionService/getUserCollectKnowledge" desc="提交店铺申请" method="POST">
+			<parameters>
+				<parameter name="userId" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/UserCollectionService/getUserCollectVideo" desc="取得用户收藏的视频" method="POST">
+			<parameters>
+				<parameter name="userId" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/UserCollectionService/getUserCollectHospital" desc="取得用户收藏的医院" method="GET">
+			<parameters>
+				<parameter name="userId" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/UserCollectionService/getUserCollectProfessor" desc="取得用户收藏的专家" method="GET">
+			<parameters>
+				<parameter name="userId" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/UserCollectionService/getUserCollectArticle" desc="取得用户收藏的信息" method="GET">
+			<parameters>
+				<parameter name="userId" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/UserCollectionService/existInCollection" desc="判断在收藏中是否存在" method="GET">
+			<parameters>
+				<parameter name="userId" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="collectionId" type="java.lang.String" desc="收藏id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="storeType" type="java.lang.String" desc="类别" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/UserCollectionService/add" desc="添加到收藏夹中" method="POST">
+			<parameters>
+				<parameter name="userId" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="foreignId" type="java.lang.String" desc=" 外键id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="storeType" type="java.lang.String" desc="类别" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/UserCollectionService/remove" desc="删除收藏" method="GET">
+			<parameters>
+				<parameter name="userid" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="foreignId" type="java.lang.String" desc="外键id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/UserCollectionService/getMyCollectionIds" desc="取得一个用户的全部收藏id" method="GET">
+			<parameters>
+				<parameter name="userId" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+	</service>
+	
+	<service name="TrainService" desc="其他-注册答题">
+		<inter url="/service/TrainService/frt_getTrainById" desc="取得一个考试" method="GET">
+			<parameters>
+				<parameter name="trainId" type="java.lang.String" desc="培训id" defaultValue="ff808081530b9e8b01530ba240be0000" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象为Train:[TrainQuestion:[TrainQuestionOption]]请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Train.html">Train对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[说明：<p>1、店主会培训的trainId=ff808081530b9e8b01530ba240be0000</p>2、供产会的trainId=ff8080815308453201530855ec5a0002
+			<p>以下是一段示例</p>
+			<p>
+				<div style="lightgray;word-wrap: break-word;">
+				<textarea style="width:800px;height:400px;">{
+    "createTime": 1456156800000,
+    "desc": "店主会会员申请后所显示的考题",
+    "topicCount": 0,
+    "name": "店主会会员申请考题",
+    "questions": [
+        {
+            "createTime": 1456208195000,
+            "name": "b",
+            "answer": "D",
+            "type": 1,
+            "id": "8a8284ee530ca5c601530cc5b10c0000",
+            "trainId": "ff808081530b9e8b01530ba240be0000",
+            "options": [
+                {
+                    "createTime": 1456208196000,
+                    "questionId": "8a8284ee530ca5c601530cc5b10c0000",
+                    "optionItem": "bb",
+                    "id": "8a8284ee530ca5c601530cc5b1c20001",
+                    "itemSeq": "A"
+                },
+                {
+                    "createTime": 1456208196000,
+                    "questionId": "8a8284ee530ca5c601530cc5b10c0000",
+                    "optionItem": "b",
+                    "id": "8a8284ee530ca5c601530cc5b2670002",
+                    "itemSeq": "B"
+                },
+                {
+                    "createTime": 1456208196000,
+                    "questionId": "8a8284ee530ca5c601530cc5b10c0000",
+                    "optionItem": "b",
+                    "id": "8a8284ee530ca5c601530cc5b26d0003",
+                    "itemSeq": "C"
+                },
+                {
+                    "createTime": 1456208196000,
+                    "questionId": "8a8284ee530ca5c601530cc5b10c0000",
+                    "optionItem": "b",
+                    "id": "8a8284ee530ca5c601530cc5b2ef0004",
+                    "itemSeq": "D"
+                }
+            ]
+        },
+        {
+            "createTime": 1456209565000,
+            "name": "a",
+            "answer": "A",
+            "type": 2,
+            "id": "8a8284ee530ca5c601530cda964c0007",
+            "trainId": "ff808081530b9e8b01530ba240be0000",
+            "options": []
+        },
+        {
+            "createTime": 1456210020000,
+            "name": "b",
+            "answer": "ABC",
+            "type": 2,
+            "id": "8a8284ee530ca5c601530ce18a3d0008",
+            "trainId": "ff808081530b9e8b01530ba240be0000",
+            "options": []
+        },
+        {
+            "createTime": 1456210026000,
+            "name": "多选题",
+            "answer": "CD",
+            "type": 2,
+            "id": "8a8284ee530ca5c601530ce1a14b0009",
+            "trainId": "ff808081530b9e8b01530ba240be0000",
+            "options": [
+                {
+                    "createTime": 1456210026000,
+                    "questionId": "8a8284ee530ca5c601530ce1a14b0009",
+                    "optionItem": "A",
+                    "id": "8a8284ee530ca5c601530ce1a163000a",
+                    "itemSeq": "A"
+                },
+                {
+                    "createTime": 1456210026000,
+                    "questionId": "8a8284ee530ca5c601530ce1a14b0009",
+                    "optionItem": "B",
+                    "id": "8a8284ee530ca5c601530ce1a169000b",
+                    "itemSeq": "B"
+                },
+                {
+                    "createTime": 1456210026000,
+                    "questionId": "8a8284ee530ca5c601530ce1a14b0009",
+                    "optionItem": "C",
+                    "id": "8a8284ee530ca5c601530ce1a171000c",
+                    "itemSeq": "C"
+                },
+                {
+                    "createTime": 1456210026000,
+                    "questionId": "8a8284ee530ca5c601530ce1a14b0009",
+                    "optionItem": "Dx",
+                    "id": "8a8284ee530ca5c601530ce1a178000d",
+                    "itemSeq": "D"
+                }
+            ]
+        }
+    ],
+    "id": "ff808081530b9e8b01530ba240be0000",
+    "trainCategoryId": "ff8080815308453201530849e4b60001"
+}</textarea>
+				</div>
+			</p>
+			]]></memo>
+		</inter>
+		
+	</service>
+	
+	<service name="UserService" desc="用户服务">
+		<inter url="/service/UserService/updateUser" desc="更新用户个人信息" method="GET">
+			<parameters>
+				<parameter name="userJson" type="java.lang.String" desc="用户信息json对象" defaultValue="{}" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/UserService/updatePwd" desc="用户修改密码方法" method="POST">
+			<parameters>
+				<parameter name="userid" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="oldPassword" type="java.lang.String" desc="旧密码" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="newPassword" type="java.lang.String" desc="新密码" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/UserService/getUserById" desc="通过id查询用户信息" method="POST">
+			<parameters>
+				<parameter name="userId" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/UserService/getUserByMobile" desc="根据手机号取得当前登录用户" method="GET">
+			<parameters>
+				<parameter name="mobile" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/UserService/existUserName" desc="判断用户账号是否存在" method="GET">
+			<parameters>
+				<parameter name="username" type="java.lang.String" desc="用户名" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/UserService/bindMobile" desc="绑定用户手机" method="GET">
+			<parameters>
+				<parameter name="userid" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="mobile" type="java.lang.String" desc="手机号码" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="imei" type="java.lang.String" desc="手机校验码" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/UserService/existMobile" desc="手机号是否注册" method="GET">
+			<parameters>
+				<parameter name="mobile" type="java.lang.String" desc="用户手机号码" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/UserService/existEmail" desc="邮箱是否已注册" method="POST">
+			<parameters>
+				<parameter name="email" type="java.lang.String" desc="用户邮箱" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/UserService/updateUserLastLoginTime" desc="更新用户上次登录时间" method="GET">
+			<parameters>
+				<parameter name="userid" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+	</service>
+	
+	<service name="VideoService" desc="视频服务">
+		<inter url="/service/VideoService/getVideosForPagelit" desc="显示供应商或者店铺的视频" method="GET">
+			<parameters>
+				<parameter name="sellerId" type="java.lang.String" desc="销售者id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/VideoService/getVideosByCategoryId" desc="显示一个分类下面的视频" method="POST">
+			<parameters>
+				<parameter name="categoryId" type="java.lang.String" desc="业务分类" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+		<inter url="/service/VideoService/getVideoById" desc="根据id获取视频" method="POST">
+			<parameters>
+				<parameter name="videoId" type="java.lang.String" desc="视频id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		
+	</service>
+	
+	<service name="UserBankCardService" desc="用户-银行卡服务">
+		<inter url="/service/UserBankCardService/loadUserBankCards" desc="返回用户所绑定的银行卡列表" method="GET">
+			<parameters>
+				<parameter name="token" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		<inter url="/service/UserBankCardService/getBankCard" desc="返回用户所绑定的一条银行卡信息" method="GET">
+			<parameters>
+				<parameter name="token" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="cardId" type="java.lang.String" desc="银行卡id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		<inter url="/service/UserBankCardService/bindBankCard" desc="绑定银行卡" method="POST">
+			<parameters>
+				<parameter name="token" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="holderName" type="java.lang.String" desc="持卡人姓名" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="cardNum" type="java.lang.String" desc="银行卡号" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="phone" type="java.lang.String" desc="预留手机号" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="idcard" type="java.lang.String" desc="身份证号" defaultValue="" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		<inter url="/service/UserBankCardService/removeBankCard" desc="解绑银行卡" method="GET">
+			<parameters>
+				<parameter name="token" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="cardId" type="java.lang.String" desc="银行id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+	</service>
+	
+	
+	<service name="UserWalletController" desc="公共-钱包服务">
+		<inter url="/service/UserWallet/myWallet" desc="返回用户当前余额、总收入、总支出" method="GET">
+			<parameters>
+				<parameter name="userid" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		<inter url="/service/UserWallet/myIncomeDetail" desc="返回用户收入明细" method="GET">
+			<parameters>
+				<parameter name="userid" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		<inter url="/service/UserWallet/myPaymentDetail" desc="返回用户支出明细" method="GET">
+			<parameters>
+				<parameter name="userid" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+		<inter url="/service/UserWallet/myStatDetail" desc="返回用户收益明细" method="GET">
+			<parameters>
+				<parameter name="userid" type="java.lang.String" desc="用户id" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+	</service>
+	
+	<service name="ShoppingService" desc="购物车">
+		<inter url="/service/ShoppingService/mycartlist" desc="返回用户当前余额、总收入、总支出" method="GET">
+			<parameters>
+				<parameter name="token" type="java.lang.String" desc="token" defaultValue="1" isRequired="true"></parameter>
+				<parameter name="pageNum" type="java.lang.String" desc="页数" defaultValue="1" isRequired="true"></parameter>
+			</parameters>
+			<returnVal><![CDATA[返回的json对象请参考<a href="http://192.168.1.115/apidocs/com/cnd/greencube/server/entity/Order.html">Order对象数据结构说明</a>]]></returnVal>
+			<memo><![CDATA[]]></memo>
+		</inter>
+	</service>
+</services>

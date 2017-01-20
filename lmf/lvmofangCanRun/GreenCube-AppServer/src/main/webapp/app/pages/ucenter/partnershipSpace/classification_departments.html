@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <title>
+            科室分类
+        </title>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1"/>
+        <link rel="shortcut icon" href="/favicon.ico"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+        <link rel="stylesheet" href="/app/js/suimobile/css/sm.css"/>
+        <link rel="stylesheet" href="/app/js/suimobile/css/sm-extend.min.css"/>
+        <link rel="stylesheet" href="/app/css/common.css" />
+        <link rel="stylesheet" type="text/css" href="/app/css/addProInfo.css"/>
+    </head>
+    <body class="bgfff">
+        <div class="page-group oppor_space_page">
+            <div class="page page-current">
+                <!-- 首部 -->
+                <header class="bar bar-nav">
+                    <a class="icon icon-left pull-left back confirm-title-ok" href="javascript:;">
+                        返回
+                    </a>
+                    <h1 class="title title-whi">
+                        科室分类
+                    </h1>
+                </header>
+                <!-- 内容 -->
+                <div class="content">
+                    <div class="clearfix">
+                        <div class="left_tabs_list">
+                            <ul id="main_category">
+                            <li class="dep_active">皮肤科</li>
+                                <li>男科</li>
+                                <li>妇科</li>
+                                <li>耳鼻喉科</li>
+                                
+                            </ul>
+                        </div>
+                        <div class="right_content-tab">
+                            <div class="list-block">
+                                <ul>
+                                    <li class="item-content item-link">
+                                        <div class="item-title">皮肤科</div>
+                                    </li>
+                                    <li class="item-content item-link">
+                                        <div class="item-title">皮肤科</div>
+                                    </li>
+                                    <li class="item-content item-link">
+                                        <div class="item-title">皮肤科</div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="list-block hide">
+                                <ul>
+                                    <li class="item-content item-link">
+                                        <div class="item-title">男科</div>
+                                    </li>
+                                    <li class="item-content item-link">
+                                        <div class="item-title">男科</div>
+                                    </li>
+                                    <li class="item-content item-link">
+                                        <div class="item-title">男科</div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="list-block hide">
+                                <ul>
+                                    <li class="item-content item-link">
+                                        <div class="item-title">妇科</div>
+                                    </li>
+                                    <li class="item-content item-link">
+                                        <div class="item-title">妇科</div>
+                                    </li>
+                                    <li class="item-content item-link">
+                                        <div class="item-title">妇科</div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="list-block hide">
+                                <ul>
+                                    <li class="item-content item-link">
+                                        <div class="item-title">耳鼻喉科</div>
+                                    </li>
+                                    <li class="item-content item-link">
+                                        <div class="item-title">耳鼻喉科</div>
+                                    </li>
+                                    <li class="item-content item-link">
+                                        <div class="item-title">耳鼻喉科</div>
+                                    </li>
+                                </ul>
+                            </div>
+                 
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+       <script type="text/javascript" src='/app/js/zepto/zepto.min.js' charset='utf-8'></script>
+         <!-- 阻止路由 -->
+        <script>
+        $.config={router:false}
+        </script>
+  <script type="text/javascript" src='/app/js/zepto/zepto.cookie.min.js' charset='utf-8'></script>
+  <script type="text/javascript" src='/app/js/suimobile/js/sm.min.js' charset='utf-8'></script>
+  <script type="text/javascript" src='/app/js/suimobile/js/sm-extend.min.js' charset='utf-8'></script>
+  <script type="text/javascript" src="/app/js/mustache.js"></script>
+  <script type="text/javascript" src="/app/js/greencube/greencube.app.js"></script>
+  
+
+  <!-- css3免前缀插件 -->
+  <script type="text/javascript" src="/app/js/greencube/prefixfree.min.js"></script>
+        <script>
+     
+            //主类别
+            Request.invok('/ucenter/partnershipSpace/main_category', function(result){
+    			
+    			if (result.success == true) {
+    				if (result.data && result.data.length > 0) {
+    					_html1 = '';
+    					for (i = 0; i < result.data.length; i ++) {
+    						cat = result.data[i];
+    						if(i == 0){
+    							  _html1 += '<li class="dep_active">' + cat.name + '</li>';
+    							}
+    						else{
+    							_html1 += '<li>' + cat.name + '</li>';
+    						}
+    						
+    						
+    					}
+    					$("#main_category").html(_html1);
+    				    $(".left_tabs_list ul li").each(function(index, el) {
+    		               	
+    		                   $(this).on('click', function(event) {
+    		                       $(this).addClass('dep_active').siblings().removeClass('dep_active');
+    		                       $(".list-block").eq(index).show().siblings().hide();
+    		                   });
+    		               });
+    		               $(".left_tabs_list ul li:last-child").on('click',function(event) {
+    		                   if($(this).hasClass('dep_active')){
+    		                       $(this).css("border-bottom","none");
+    		                   }
+    		               });
+    					
+    				}
+    			}
+    		});
+  
+            
+    	   
+        </script>
+    </body>
+</html>

@@ -1,0 +1,135 @@
+/*个人中心-消息*/
+.content_right{ width:800px;}
+.content_right h1, .content_right h2{ color:#3e3a39; font-size:16px; font-weight:bold; border-bottom:1px solid #d5d5d5; height:42px; line-height:42px; padding-left:35px;}
+.column_title{ background:#f7f7f7;}
+.qxsc{ height:30px; margin-top:27px;}
+.quanxuan{ color:#727171; font-size:12px; width:65px; height:28px; line-height:28px; border:1px solid #d5d5d5; margin-left:35px; float:left;}
+#qxan{ margin-left:10px; display:inline-block;}
+.shanc{ text-align:center; line-height:28px; height:28px; width:65px; border:1px solid #999; float:left;}
+.myxx_table{ width:755px; padding-top:22px;color:#727171; margin-left:35px;font-size:12px;}
+.myxx_table tr th{ background:#e6e6e6; height:28px; color:#727171; font-weight:normal;}
+.myxx_table tr td{ line-height:25px; border-bottom:1px solid #d5d5d5;padding: 6px 0;}
+/*.myxx_table tr td p{ margin-top:-30px;}*/
+.myxx_tdtx{ color:#3e3a39; font-size:12px; text-align:center; font-weight:bold;}
+.myxx_sj{ text-align: center; font-size:12px;}
+.ckgd{ margin-left:auto; margin-right:auto; width:90px; padding-top:20px; padding-bottom:60px; }
+.myxx_table td.con {
+	overflow: hidden;
+	font-family: "Microsoft Yahei";
+}
+
+.myxx_table td.con a span{
+	float: left;
+	width: 90px;
+	text-align: center;
+	display: block;
+	font-weight: bold;
+}
+.myxx_table td.con a p{
+	float: left;
+	width: 500px;
+	color: #727171;
+}
+.myxx_table td a{
+	display: block;
+	width: 100%;
+	overflow: hidden;
+}
+.myxx_table td.con a:link{
+	color: #111 !important;;
+}
+.myxx_table td.con a:visited{
+	color: #727171 !important;
+}
+.ckgd a{color:#3e3a39;}
+.ckgd a:hover{ color:#5aaf00;}
+/*错误页面*/
+.content_cw{
+ width:380px; 
+ margin-left:auto;
+  margin-right:auto; 
+  margin-top:80px;
+	margin-bottom: 100px;
+}
+.content_cw h1{ width:107px; margin-left:auto; margin-right:auto;}
+.content_cw h2{ font-size:25px; margin-top:45px; margin-bottom:25px;}
+.content_cw p{ font-size:14px; line-height:28px; color:#3e3a39;}
+/*机构后台-订单管理*/
+.main_right{ border:1px solid #d5d5d5;}
+.main_right h2{ width:765px;color:#3e3a39; font-size:16px; font-weight:bold; border-bottom:1px solid #d5d5d5; height:42px; line-height:42px; padding-left:35px; background:#f7f7f7;}
+.tabs2_title{ width:736px; height:40px; margin-top:30px;  margin-left:auto; margin-right:auto; margin-bottom:30px;}
+.order_tit li{ width:244px; height:40px; text-align:center; float:left; line-height:40px;cursor:pointer;border-right:1px solid #d5d5d5;background:#f7f7f7;}
+.order_tit li.on a{color:#727171;}
+.order_tit li.on{ background:#fff;}
+.order_tit li span{ color:#ea5514; margin-left:5px;}
+.tabs2_title ul{height:40px;border:1px solid #d5d5d5;border-right:none;}
+
+.ketang{ border:1px solid #d5d5d5; width:734px; margin-left:auto; margin-right:auto;}
+.mxb_title b{ font-weight:normal;}
+.mxb_title{ height:40px; line-height:40px; background:#f5fff5; border-bottom:1px solid #d5d5d5;}
+.mxb_title span{ padding-left:20px;}
+.mxb_content table tr td{
+	vertical-align:top;
+	border-right:1px solid #d5d5d5;
+	padding-bottom:15px;
+	padding-top:15px;
+	position:relative;
+}
+.mxb_content table tr td .number{
+	position:absolute;
+	left:275px;
+	top:25px; color:#3e3a39;
+}
+.mxb_content table tr td>img{
+	margin-left:13px;
+	margin-right:17px;
+	float:left;
+}
+.mxb_content h2{
+	font-size:12px;
+	line-height:32px;
+	font-weight:normal;
+}
+.mxb_content td tr h3{
+	font-weight:normal;
+	line-height:28px;
+	font-size:12px;
+}
+.mxb_content p{
+	color:#9fa0a0;
+	text-overflow: ellipsis;
+	overflow:hidden;
+	white-space:nowrap; padding-top:5px;
+}
+.font_red{ color:#ea5514; font-weight:normal;}
+.quxiao1{ width:75px; height:28px; border:1px solid #d5d5d5; line-height:28px;}
+.quxiao1:hover{ background:#5aaf00;}
+.quxiao1 a:hover{ color:#fff;}
+/*--弹框--*/
+.qeding{margin-left:90px;float:left; padding-bottom:20px;display: inline-block;}
+.qeding a{ height:34px; width:57px; line-height:34px; background:#5aaf00; display: inline-block; text-align:center;  color:#fff; }
+.quxiaoanniu { margin-left:20px; margin-bottom:20px;display: inline-block;}
+.quxiaoanniu a{ width:57px; height:34px; line-height:34px; background:#999;display: inline-block; text-align:center; color:#fff;}
+.grdl{ margin-top:40px;}
+.grdl_yb{ width:388px;position:relative;}
+.grdl_yb h2{ font-size:16px; padding-left:35px; padding-top:35px; font-weight:bold;}
+.grdl_yb p{ padding-left:35px; font-size:14px; line-height:40px; padding-top:10px;}
+.grdl_wbk{ height:32px; line-height:32px; width:230px; background:url(../../images/dingjian/shouji.png) 8px 7px no-repeat; padding-left:24px;}
+.grdl_wbk1{ width:82px; height:32px; line-height:32px;padding-left:24px;}
+.grdl_yb p>img{ padding-left:10px;}
+.grdl_yb p>a{ padding-left:10px; color:#3d84c4;}
+#grdl_mimak{ background:url(../../images/dingjian/suo.png) 8px 7px no-repeat;}
+.denglv{ text-align:center; padding-top:20px;}
+.denglv a{ display:inline-block; width:315px; height:35px; line-height:35px; background:#5aaf00; color:#fff; font-size:16px;}
+.wangji{ width:315px; padding-top:10px; padding-bottom:40px;}
+.wangji span>a{ color:#5aaf00;}
+.error_tip{  font-size: 12px;  z-index:10; border:1px #ea5514 solid; position:absolute; padding-left:25px; background:#fff2f2 url(../../images/dingjian/error_tips.png)5px 6px no-repeat; height:28px; line-height:28px; left:240px; top:47px;}
+.error_tip b:after, .error_tip1 b:after{ display:inline-block;content:""; width:12px; height:8px; background: url(../../images/dingjian/error_tips_sj.png) no-repeat; position:absolute; left:10px; top:28px; overflow:hidden;}
+.error_tip1{font-size: 12px;  z-index:10; border:1px #ea5514 solid; position:absolute; padding-left:25px; background:#fff2f2 url(../../images/dingjian/error_tips.png)5px 6px no-repeat; height:28px; line-height:28px; left:140px; top:145px;}
+
+/*弹出框*/
+.tanchu_beijing{ width:100%; height:100%; background:rgba(27,27,27,0.3); position: absolute; top:0px; left:0px;}
+.shanchu_tishi{ width:330px; height:190px; border:2px #606060 solid; position:fixed; top:40%; left:40%; background:rgba(255,255,255,1.00);}
+.shanchu_tishi h3{ background:#606060; height:45px; line-height:45px; padding-left:20px; color:#FFFFFF; text-align:left; font-size:14px;}
+.shanchu_tishi>ul>li{ text-align:center; margin-top:20px;}
+.shanchu_tishi>ul>p{ float:left; text-align:center; width:60px; height:35px; color:#FFFFFF; cursor:pointer; line-height:35px; margin-top:30px;  margin-left:30px;}

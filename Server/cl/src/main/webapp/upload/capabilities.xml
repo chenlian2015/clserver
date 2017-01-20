@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<capabilitiesConfiguration>
+  <version>2.0.0</version>
+  <capabilities>
+    <capability>
+      <version>1</version>
+      <id>000002b184b363c0</id>
+      <notes>Automatically added on Sat Feb 06 20:10:18 CST 2016</notes>
+      <enabled>false</enabled>
+      <typeId>analytics.collection</typeId>
+      <properties>
+        <property>
+          <key>hostId</key>
+          <value>c26dc107-5583-47d0-ad08-9d5b22a48ce6</value>
+        </property>
+        <property>
+          <key>salt</key>
+          <value>XzOGDRRZzwPGwfMU3y5FW9fmuurkJCOf+2fbEiDvyWVt</value>
+        </property>
+      </properties>
+    </capability>
+    <capability>
+      <version>1</version>
+      <id>000002b184b363c1</id>
+      <notes>Automatically added on Sat Feb 06 20:10:18 CST 2016</notes>
+      <enabled>false</enabled>
+      <typeId>analytics.autosubmit</typeId>
+    </capability>
+    <capability>
+      <version>1</version>
+      <id>000002b184b363c2</id>
+      <notes>Automatically added on Sat Feb 06 20:10:18 CST 2016</notes>
+      <typeId>yum</typeId>
+      <properties>
+        <property>
+          <key>maxNumberParallelThreads</key>
+          <value>10</value>
+        </property>
+        <property>
+          <key>createrepoPath</key>
+          <value>createrepo</value>
+        </property>
+        <property>
+          <key>mergerepoPath</key>
+          <value>mergerepo</value>
+        </property>
+      </properties>
+    </capability>
+    <capability>
+      <version>1</version>
+      <id>000002b184b363c3</id>
+      <notes>Automatically added on Sat Feb 06 20:10:18 CST 2016</notes>
+      <typeId>OutreachManagementCapability</typeId>
+      <properties>
+        <property>
+          <key>baseUrl</key>
+          <value>http://links.sonatype.com/products/nexus/outreach</value>
+        </property>
+      </properties>
+    </capability>
+    <capability>
+      <version>1</version>
+      <id>000002b184b363c4</id>
+      <notes>Automatically added on Sat Feb 06 20:10:18 CST 2016</notes>
+      <typeId>OutreachMarkerCapability</typeId>
+    </capability>
+  </capabilities>
+</capabilitiesConfiguration>

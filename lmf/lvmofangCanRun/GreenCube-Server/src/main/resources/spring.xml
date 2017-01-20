@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+	http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-3.2.xsd
+	http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- support 多种环境（dev、qa、product等）定义vm参数指定WEB_CONFIG_HOME的具体值 eg:-production.mode=product -->
+	<bean id="placeholderConfig" class="com.cnd.greencube.server.config.SysConfiguration">
+		<property name="configurations">
+			<list>
+				<!-- 自己项目的单独属性文件定义 top.properties 会覆盖 common.properties同名属性值 -->
+				<value>classpath:config/${production.mode}/config.properties</value>
+			</list>
+		</property>
+		<property name="fileEncoding" value="UTF-8" />
+	</bean>
+
+	<context:component-scan base-package="com.cnd.greencube.server">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+		<context:exclude-filter type="regex" expression="com.cnd.greencube.server.service.impl.*" />
+	</context:component-scan>
+	
+	<!-- 注解风格支持 -->
+	<aop:aspectj-autoproxy proxy-target-class="true" expose-proxy="true" />
+
+	<!-- 配置的动态数据源，实现读写分离 -->
+	<bean id="dataSource" class="com.cnd.greencube.server.datasource.ReadWriteDataSource">
+		<property name="writeDataSource" ref="masterDataSource" />
+		<property name="readDataSourceMap">
+			<map>
+				<entry key="readDataSource1" value-ref="slaveDataSource" />
+			</map>
+		</property>
+	</bean>
+	
+	<!-- Master数据源,负责write -->
+	<bean id="masterDataSource" parent="parentDataSource">
+		<property name="url" value="${datasource.masterUrl}" />
+		<property name="username" value="${datasource.username}" />
+		<property name="password" value="${datasource.password}" />
+		<property name="proxyFilters">
+			<list>
+				<ref bean="stat-filter" />
+				<ref bean="wall-filter" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Slave数据源,负责read -->
+	<bean id="slaveDataSource" parent="parentDataSource">
+		<property name="url" value="${datasource.slaveUrl}" />
+		<property name="username" value="${datasource.username}" />
+		<property name="password" value="${datasource.password}" />
+		<property name="proxyFilters">
+			<list>
+				<ref bean="stat-filter" />
+				<ref bean="wall-filter-readonly" />
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Druid数据源配置 -->
+	<bean id="parentDataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		destroy-method="close">
+		<property name="filters" value="${druid.filters}"></property>
+		<!-- 数据源需要数据库密码进行解密 -->
+		<property name="connectionProperties" value="${druid.connectProperties}"></property>
+		<!-- 配置初始化大小、最小、最大 -->
+		<property name="initialSize" value="${druid.initialSize}" />
+		<property name="minIdle" value="${druid.minIdle}" />
+		<property name="maxActive" value="${druid.maxActive}" />
+		<!-- 配置获取连接等待超时的时间 -->
+		<property name="maxWait" value="${druid.maxWait}" />
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 testWhileIdle的判断依据 -->
+		<property name="timeBetweenEvictionRunsMillis" value="${druid.timeBetweenEvictionRunsMillis}" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 设置5分钟 -->
+		<property name="minEvictableIdleTimeMillis" value="${druid.minEvictableIdleTimeMillis}" />
+		<!-- 用来检测连接是否有效的sql，要求是一个查询语句。如果validationQuery 为 null，testOnBorrow、testOnReturn、testWhileIdle都不会其作用。 -->
+		<property name="validationQuery" value="${druid.validationQuery}" />
+		<!-- 建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。 -->
+		<property name="testWhileIdle" value="${druid.testWhileIdle}" />
+		<!-- 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能。 -->
+		<property name="testOnBorrow" value="${druid.testOnBorrow}" />
+		<!-- 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能 -->
+		<property name="testOnReturn" value="${druid.testOnReturn}" />
+		<!-- 是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql5.5以下的版本中没有PSCache功能，建议关闭掉。5.5及以上版本有PSCache，建议开启。 -->
+		<property name="poolPreparedStatements" value="${druid.poolPreparedStatements}" />
+		<!-- 要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。在Druid中，不会存在Oracle下PSCache占用内存过多的问题，可以把这个数值配置大一些，比如说100 -->
+		<property name="maxPoolPreparedStatementPerConnectionSize"
+			value="${druid.maxPoolPreparedStatementPerConnectionSize}" />
+		<!-- 连接泄漏监测(忘记close) 配置removeAbandoned对性能会有一些影响，建议怀疑存在泄漏之后再打开 -->
+		<!-- 打开removeAbandoned功能 -->
+		<property name="removeAbandoned" value="${druid.removeAbandoned}" />
+		<!-- 1800秒，也就是30分钟 -->
+		<property name="removeAbandonedTimeout" value="${druid.removeAbandonedTimeout}" />
+		<!-- 关闭abanded连接时输出错误日志 -->
+		<property name="logAbandoned" value="${druid.logAbandoned}" />
+	</bean>
+
+	<!-- 监控拦截器 -->
+	<bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">
+		<!-- slowSqlMillis用来配置SQL慢的标准，执行时间超过slowSqlMillis的就是慢,并且通过日志输出执行慢的SQL，配置是5秒 -->
+		<property name="slowSqlMillis" value="${druid.slowSqlMillis}" />
+		<property name="logSlowSql" value="${druid.logSlowSql}" />
+		<!-- 日志Sql合并配置 -->
+		<property name="mergeSql" value="${druid.mergeSql}" />
+	</bean>
+	
+	<!-- 配置防御SQL注入攻击：标识为只读数据源 -->
+	<bean id="wall-filter-readonly" class="com.alibaba.druid.wall.WallFilter">
+		<!-- 数据库类型 -->
+		<property name="dbType" value="${druid.dbType}" />
+		<property name="config" ref="wall-filter-config-readonly" />
+	</bean>
+	
+	<!-- 配置防御SQL注入攻击 -->
+	<bean id="wall-filter" class="com.alibaba.druid.wall.WallFilter">
+		<!-- 数据库类型 -->
+		<property name="dbType" value="${druid.dbType}" />
+		<property name="config" ref="wall-filter-config" />
+	</bean>
+	
+	<!-- 配置防御SQL注入攻击：标识为只读数据源 -->
+	<bean id="wall-filter-config-readonly" class="com.alibaba.druid.wall.WallConfig"
+		init-method="init">
+		<!-- 指定配置装载的目录 -->
+		<property name="dir" value="META-INF/wall/mysql" />
+		<!-- readonly start -->
+		<property name="selectIntoAllow" value="false" />
+		<property name="deleteAllow" value="false" />
+		<property name="updateAllow" value="false" />
+		<property name="insertAllow" value="false" />
+		<property name="mergeAllow" value="false" />
+		<!-- readonly end -->
+		<!--检查SELECT语句的WHERE子句是否是一个永真条件 -->
+		<property name="selectWhereAlwayTrueCheck" value="false" />
+		<!--检查查询条件(WHERE/HAVING子句)中是否包含LIKE永真条件 -->
+		<property name="conditionLikeTrueAllow" value="true" />
+	</bean>
+	
+	<!-- 配置防御SQL注入攻击 -->
+	<bean id="wall-filter-config" class="com.alibaba.druid.wall.WallConfig"
+		init-method="init">
+		<!-- 指定配置装载的目录 -->
+		<property name="dir" value="META-INF/wall/mysql" />
+		<!--检查SELECT语句的WHERE子句是否是一个永真条件 -->
+		<property name="selectWhereAlwayTrueCheck" value="false" />
+		<!--检查查询条件(WHERE/HAVING子句)中是否包含LIKE永真条件 -->
+		<property name="conditionLikeTrueAllow" value="true" />
+	</bean>
+
+	<bean id="druidStatInterceptor"
+		class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor" />
+	<!-- xml风格支持 -->
+	
+	<aop:config proxy-target-class="true" expose-proxy="true">
+		<aop:advisor id="druidAdvisor" advice-ref="druidStatInterceptor" pointcut="execution(* com.cnd.greencube.server..business..*Impl.*(..))" />
+	</aop:config>
+
+	<bean id="dataSourceProxy" class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy" lazy-init="false">
+		<property name="targetDataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="jdbcDao" class="com.cnd.greencube.server.dao.jdbc.JdbcDAO">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- <property name="persistenceXmlLocation" value="classpath*:/persistence.xml" />
+		<property name="persistenceUnitName" value="persistenceUnit" /> -->
+		<property name="packagesToScan" value="com.cnd.greencube.server.entity"/>
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="showSql" value="${jpa.showsql}" />
+				<property name="generateDdl" value="false" />
+			</bean>
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.ejb.interceptor">com.cnd.greencube.server.interceptor.Test</prop>
+				<prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
+				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+				<prop key="hibernate.cache.region.factory_class">${hibernate.cache.region.factory_class}</prop>
+				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+				<prop key="hibernate.jdbc.fetch_size">${hibernate.jdbc.fetch_size}</prop>
+				<prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
+				<prop key="hibernate.connection.isolation">2</prop>
+				<prop key="javax.persistence.validation.mode">none</prop>
+				<prop key="hibernate.search.default.directory_provider">org.hibernate.search.store.FSDirectoryProvider</prop>
+				<prop key="hibernate.search.default.indexBase">${java.io.tmpdir}/${system.project_name}/index</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
+
+	<bean
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetClass" value="java.lang.System" />
+		<property name="targetMethod" value="setProperty" />
+		<property name="arguments">
+			<list>
+				<value>system.project_name</value>
+				<value>${system.project_name}</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 任务配置 -->
+	<bean id="taskExecutor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="${task.core_pool_size}" />
+		<property name="maxPoolSize" value="${task.max_pool_size}" />
+		<property name="queueCapacity" value="${task.queue_capacity}" />
+		<property name="keepAliveSeconds" value="${task.keep_alive_seconds}" />
+	</bean>
+
+	<task:annotation-driven />
+
+	<!-- jedis部分的配置 -->
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxTotal" value="${jredis.pool.maxTotal}" />
+		<property name="maxWaitMillis" value="${jredis.pool.maxWaitMillis}" />
+		<property name="maxIdle" value="${jredis.pool.maxIdle}" />
+		<property name="testOnBorrow" value="${jredis.pool.testOnBorrow}" />
+		<property name="testWhileIdle" value="${jredis.pool.testOnReturn}" />
+	</bean>
+	
+	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+		<constructor-arg index="0" ref="jedisPoolConfig" />
+		<constructor-arg index="1" value="${jredis.master.ip}" />
+		<constructor-arg index="2" value="${jredis.master.port}" />
+		<constructor-arg index="3" value="${jredis.master.timeout}" />
+		<!-- <constructor-arg index="4" value="${jredis.master.password}"/> -->
+	</bean>
+	<bean id="jedisTemplate" class="com.cnd.greencube.server.dao.redis.JedisTemplate">
+		<constructor-arg index="0" ref="jedisPool" />
+	</bean>
+	
+	<!-- 配置短信发送插件 -->
+	<bean id="SMSProvider" class="com.cnd.greencube.server.plugin.sms.manyitong.ManyitongSMSProvider">
+		<property name="serviceUrl" value="http://test2.ndchina.cn/api/bs3webservice.asmx" />
+		<property name="soaActionUrl" value="http://tempuri.org/SendSMS" />
+		<property name="user" value="greencube" />
+		<property name="password" value="123456" />
+	</bean>
+	
+	<bean id="AreaService" class="com.cnd.greencube.server.service.impl.AreaServiceImpl" />
+	<bean id="CmsService" class="com.cnd.greencube.server.service.impl.CmsServiceImpl" />
+	<bean id="UserCollectionService" class="com.cnd.greencube.server.service.impl.UserCollectionServiceImpl" />
+	<bean id="CommentService" class="com.cnd.greencube.server.service.impl.CommentServiceImpl" />
+	<bean id="CouponService" class="com.cnd.greencube.server.service.impl.CouponServiceImpl" />
+	<bean id="HealthyCategoryService" class="com.cnd.greencube.server.service.impl.HealthyCategoryServiceImpl" />
+	<bean id="HealthyMemberService" class="com.cnd.greencube.server.service.impl.HealthyMemberServiceImpl" />
+	<bean id="LoginService" class="com.cnd.greencube.server.service.impl.LoginServiceImpl" />
+	<bean id="NotifyService" class="com.cnd.greencube.server.service.impl.NotifyServiceImpl" />
+	<bean id="OrderService" class="com.cnd.greencube.server.service.impl.OrderServiceImpl" />
+	<bean id="PaymentService" class="com.cnd.greencube.server.service.impl.PaymentServiceImpl" />
+	<bean id="ProductService" class="com.cnd.greencube.server.service.impl.ProductServiceImpl" />
+	<bean id="MemberService" class="com.cnd.greencube.server.service.impl.MemberServiceImpl" />
+	<bean id="MemberRelationService" class="com.cnd.greencube.server.service.impl.MemberRelationServiceImpl" />
+	<bean id="ShopGoodsService" class="com.cnd.greencube.server.service.impl.ShopGoodsServiceImpl" />
+	<bean id="ShoppingService" class="com.cnd.greencube.server.service.impl.ShoppingServiceImpl" />
+	<bean id="TrainService" class="com.cnd.greencube.server.service.impl.TrainServiceImpl" />
+	<bean id="VideoService" class="com.cnd.greencube.server.service.impl.VideoServiceImpl" />
+	<bean id="FeedbackService" class="com.cnd.greencube.server.service.impl.FeedbackServiceImpl" />
+	<bean id="RegistService" class="com.cnd.greencube.server.service.impl.RegistServiceImpl" />
+	<bean id="MemberFeeCategoryService" class="com.cnd.greencube.server.service.impl.MemberFeeCategoryServiceImpl" />
+	<bean id="RequirementService" class="com.cnd.greencube.server.service.impl.RequirementServiceImpl" />
+	<bean id="WithdrawService" class="com.cnd.greencube.server.service.impl.WithdrawServiceImpl" />
+	<bean id="UserBankCardService" class="com.cnd.greencube.server.service.impl.UserBankCardServiceImpl" />
+	<bean id="UserService" class="com.cnd.greencube.server.service.impl.UserServiceImpl" />
+	<bean id="UserAccountService" class="com.cnd.greencube.server.service.impl.UserAccountServiceImpl" />
+	<bean id="FinanceService" class="com.cnd.greencube.server.service.impl.FinanceServiceImpl" />
+	<bean id="FadocFamilyDoctorService" class="com.cnd.greencube.server.service.impl.FadocFamilyDoctorServiceImpl" />
+	<bean id="OpportunitySpaceService" class="com.cnd.greencube.server.service.impl.OpportunitySpaceServiceImpl" />
+	<bean id="server1" class="com.cnd.greencube.server.thrift.ThriftProxy" init-method="start">
+		<property name="port" value="${thrift.pool.port}"/>
+		<property name="services">
+			<list>
+				<!--  <ref bean="CouponService" />-->
+				<ref bean="AreaService" />
+				<ref bean="CmsService" />
+				<ref bean="UserCollectionService" />
+				<ref bean="CommentService" />
+				<ref bean="CouponService" />
+				<ref bean="HealthyCategoryService" />
+				<ref bean="HealthyMemberService" />
+				<ref bean="LoginService" />
+				<ref bean="NotifyService" />
+				<ref bean="OrderService" />
+				<ref bean="PaymentService" />
+				<ref bean="ProductService" />
+				<ref bean="MemberService" />
+				<ref bean="MemberRelationService" />
+				<ref bean="ShopGoodsService" />
+				<ref bean="ShoppingService" />
+				<ref bean="TrainService" />
+				<ref bean="VideoService" />
+				<ref bean="FeedbackService" />
+				<ref bean="UserService" />
+				<ref bean="RegistService" />
+				<ref bean="MemberFeeCategoryService" />
+				<ref bean="RequirementService" />
+				<ref bean="FinanceService" />
+				<ref bean="FadocFamilyDoctorService" />
+				<ref bean="OpportunitySpaceService" />
+				<ref bean="WithdrawService" />
+				<ref bean="UserBankCardService" />
+				<ref bean="UserAccountService" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="paymentSubjectCommand" class="java.util.HashMap">  
+	    <constructor-arg>  
+	       <map>  
+				<entry key="member_fee" value="MemberFeeSubjectRequest" />
+				<entry key="manager_fee" value="ManagerFeeSubjectRequest" />
+				<entry key="user_charge" value="UserChargeSubjectRequest" />
+				<entry key="goods_transaction" value="GoodsTransactionSubjectRequest" />  
+	       </map>  
+	    </constructor-arg>  
+	</bean>
+	
+	
+    <!-- 运行时请将方式一注释掉！ -->    
+    <!-- 方式二：使用MethodInvokingJobDetailFactoryBean，任务类可以不实现Job接口，通过targetMethod指定调用方法-->    
+    <!-- 定义目标bean和bean中的方法 -->  
+    <bean id="StatUserVirtualTask" class="com.cnd.greencube.server.task.accountgraph.StatUserVirtualTask"/>  
+	
+	<bean id="StatUserVirtualTaskExecuteMethod" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+	    <property name="targetObject">  
+	        <ref bean="StatUserVirtualTask"/>  
+	    </property>  
+	    <property name="targetMethod">  <!-- 要执行的方法名称 -->  
+	        <value>execute</value>  
+	    </property>
+	</bean>  
+  
+	<!-- ======================== 调度触发器 ======================== -->  
+	<bean id="StatUserVirtualTaskBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">  
+	    <property name="jobDetail" ref="StatUserVirtualTaskExecuteMethod"></property>  
+	    <property name="cronExpression" value="0 15 23 L * ?"></property>
+	    <!-- <property name="cronExpression" value="0/2 * * * * ?" /> -->
+	</bean>  
+  
+	<!-- ======================== 调度工厂 ======================== -->  
+	<bean id="SpringJobSchedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" lazy-init="false">  
+		<property name="startupDelay" value="0" /> 
+	    <property name="triggers">  
+	        <list>  
+	            <ref bean="StatUserVirtualTaskBean"/>  
+	        </list>  
+	    </property>  
+	</bean> 
+
+</beans>

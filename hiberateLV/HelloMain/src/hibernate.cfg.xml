@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- 配置数据库的连接属性 -->
+        <property name="connection.url">
+            jdbc:mysql://rdsv44tr735n1z71lciw.mysql.rds.aliyuncs.com:3306/yuhuayuanzhige
+        </property>
+        <property name="connection.username">chenlian</property>
+        <property name="connection.password">Hello54987663</property>
+        <property name="connection.driver_class">
+            com.mysql.jdbc.Driver
+        </property>
+        <property name="dialect">
+            org.hibernate.dialect.MySQLDialect
+        </property>
+        <property name="show_sql">true</property>
+        <!-- 配置C3P0连接池属性 -->
+        <property name="hibernate.connection.provider_class">
+            org.hibernate.c3p0.internal.C3P0ConnectionProvider
+        </property>
+        <property name="hibernate.c3p0.max_size">20</property>
+        <property name="hibernate.c3p0.min_size">5</property>
+        <property name="hibernate.c3p0.timeout">5000</property>
+        <property name="hibernate.c3p0.max_statements">100</property>
+        <property name="hibernate.c3p0.idle_test_period">3000</property>
+        <!-- 当连接池耗尽并接到获得连接的请求，则新增加连接的数量 -->
+        <property name="hibernate.c3p0.acquire_increment">2</property>
+        <!-- 是否验证，检查连接 -->
+        <property name="hibernate.c3p0.validate">false</property>
+
+        <property name="hbm2ddl.auto">update</property>
+
+        <mapping class="bean.News"/>
+        <mapping class="com.study.myassociation.entity.Person"/>
+        <mapping class="com.study.myassociation.entity.Phone"/>
+        <mapping class="com.study.myassociation.entity.Address"/>
+        <mapping class="com.study.myassociation.entity.GraduateSchool"/>
+        <mapping class="com.study.myassociation.study_manytomany.Teacher"/>
+        <mapping class="com.study.myassociation.study_manytomany.Student"/>
+        <mapping class="com.study.myassociation.study_base.Goods"/>
+        <mapping class="com.study.myassociation.study_base.MyOrder"/>
+        <mapping class="com.study.myassociation.study_base.Shop"/>
+        <mapping class="com.study.myassociation.study_annotation.Community"/>
+
+
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <title>
+            服务排期
+        </title>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1"/>
+        <link rel="shortcut icon" href="/favicon.ico"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+        <meta name="viewport" content="width=375,user-scalable=no">
+        <meta name="viewport" content="width=414,user-scalable=no">
+        <link rel="stylesheet" href="/app/js/suimobile/css/sm.css"/>
+        <link rel="stylesheet" href="/app/js/suimobile/css/sm-extend.min.css"/>
+        <link rel="stylesheet" href="/app/css/common.css" />
+        <link rel="stylesheet" type="text/css" href="/app/css/addProInfo.css"/>
+    </head>
+    <body>
+        <div class="page-group services_data_page" >
+            <div class="page page-current">
+                <!-- 首部 -->
+                <header class="bar bar-nav">
+                    <a class="icon icon-left pull-left back confirm-title-ok" href="javascript:;">
+                    </a>
+                    <a class="icon pull-right login-text preservation" href="javascript:;">
+                        确定
+                    </a>
+                    <h1 class="title title-whi">
+                        服务排期
+                    </h1>
+                </header>
+                <!-- 内容 -->
+                <div class="content">
+                    <div class="choice_data">
+                        <h6>选择时间段</h6>
+                        <div class="choice_time clearfix">
+                            <ul>
+                                <li class="data_act">周一</li>
+                                <li>周二</li>
+                                <li>周三</li>
+                                <li>周四</li>
+                                <li>周五</li>
+                                <li>周六</li>
+                                <li>周日</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="choice_dw clearfix">
+                        <h6>选择时间单位</h6>
+                        <div class="date_time">
+                            <ul>
+                                <li class="date_act_time">全天</li>
+                                <li>上午</li>
+                                <li>下午</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="choice_dw clearfix">
+                        <h6>每日服务量</h6>
+                        <div class="num_servers">
+                            <input type="text" class="box_nums" placeholder="请动手输入..." number/>
+                            <span class="nums_text">次</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src='/app/js/zepto/zepto.min.js' charset='utf-8'>
+        </script>
+        <!-- 阻止路由 -->
+        <script>
+            $.config={router:false}
+        </script>
+        <script type="text/javascript" src='/app/js/suimobile/js/sm.min.js' charset='utf-8'>
+        </script>
+        <script type="text/javascript" src='/app/js/suimobile/js/sm-extend.min.js' charset='utf-8'>
+        </script>
+        <!-- css3免前缀插件 -->
+        <script type="text/javascript" src="/app/js/greencube/prefixfree.min.js">
+        </script>
+        <script>
+        $(".choice_time ul li").each(function(index, el) {
+            $(this).bind('click',function(event) {
+                $(this).toggleClass('data_act');
+            });
+        });
+        $(".date_time ul li").each(function(index, el) {
+            $(this).bind('click',function(event) {
+                $(this).toggleClass('date_act_time');
+            });
+        });
+        </script>
+    </body>
+</html>

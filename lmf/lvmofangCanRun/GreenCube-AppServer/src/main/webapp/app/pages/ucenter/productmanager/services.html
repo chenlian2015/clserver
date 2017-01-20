@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>添加增值服务</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="/app/js/suimobile/css/sm.css">
+    <link rel="stylesheet" href="/app/js/suimobile/css/sm-extend.min.css">
+    <link rel="stylesheet" href="/app/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="/app/css/addProInfo.css">
+
+  </head>
+  <body>
+    <div class="page-group added-services-page" >
+      <div class="page page-current">
+        <!-- 首部 -->
+        <header class="bar bar-nav">
+          <a class="icon icon-left pull-left back confirm-title-ok" href="javascript:;"></a>
+          <a class="icon pull-right login-text preservation" href="javascript:;">保存</a>
+          <h1 class="title title-whi">添加增值服务</h1>
+        </header>
+      <!-- 内容 -->
+        <div class="content">
+          <div class="product-name">
+            <h6>增值服务名称*</h6>
+            <textarea name="" id="" class="input-name-pro"></textarea>
+          </div>
+          <div class="product-name">
+            <h6>增值服务说明*</h6>
+            <textarea name="" id="" class="input-name-pro hei7"></textarea>
+          </div>
+          <a href="javascript:;" class="sub-btn">完成,下一步</a>
+        </div>
+      </div>
+    </div>
+
+  <script type="text/javascript" src='/app/js/zepto/zepto.min.js' charset='utf-8'></script>
+  <!-- 阻止路由 -->
+  <script>
+  $.config={router:false}
+  </script>
+  <script type="text/javascript" src='/app/js/suimobile/js/sm.min.js' charset='utf-8'></script>
+  <script type="text/javascript" src='/app/js/suimobile/js/sm-extend.min.js' charset='utf-8'></script>
+
+  <!-- css3免前缀插件 -->
+  <script type="text/javascript" src="/app/js/greencube/prefixfree.min.js"></script>
+  <script>
+    $(document).on('click','.confirm-title-ok', function () {
+          $.confirm('返回将添加失败', '提示', function () {
+              $.alert('添加失败');
+          });
+      });
+    $('.preservation').bind('click',function(event) {
+      $.toast("保存成功");
+    });
+  </script>
+  </body>
+</html>

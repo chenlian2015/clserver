@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.cnd.greencube</groupId>
+  <artifactId>GreenCube</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0</version>
+  <name>GreenCube</name>
+  <url>http://maven.apache.org</url>
+
+  <modules>
+    <module>GreenCube-Service</module>
+    <module>GreenCube-WebBase</module>
+    <module>GreenCube-Server</module>
+    <module>GreenCube-AppServer</module>
+    <module>GreenCube-WebAdmin</module>
+  </modules>
+  
+	<repositories>
+        <repository>
+            <id>nexus</id>
+            <name>Team Nexus Repository</name>
+            <url>http://localhost:8081/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>nexus</id>
+            <name>Team Nexus Repository</name>
+            <url>http://localhost:8081/nexus/content/groups/public</url>
+        </pluginRepository>
+    </pluginRepositories>
+    <distributionManagement>
+  <repository>
+    <id>thirdparty</id>
+    <url>http://localhost:8081/nexus/content/repositories/thirdparty</url>
+  </repository>
+</distributionManagement>
+  
+</project>

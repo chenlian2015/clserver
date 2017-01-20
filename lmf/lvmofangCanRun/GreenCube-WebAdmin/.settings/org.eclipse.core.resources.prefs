@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//src/main/java=UTF-8
+encoding//src/main/resources=UTF-8
+encoding//src/main/resources/config/huxg/config.properties=UTF-8
+encoding//src/main/resources/config/localhost/config.properties=UTF-8
+encoding//src/main/resources/config/product/config.properties=UTF-8
+encoding//src/main/webapp/WEB-INF/template/include/top_nobar.ftl=UTF-8
+encoding//src/main/webapp/front/top_js_and_css.html=UTF-8
+encoding//src/test/java=UTF-8
+encoding//src/test/resources=UTF-8
+encoding/<project>=UTF-8

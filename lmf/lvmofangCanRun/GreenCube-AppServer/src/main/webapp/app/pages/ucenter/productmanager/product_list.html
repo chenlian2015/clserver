@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>产品管理</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="/app/js/suimobile/css/sm.css">
+    <link rel="stylesheet" href="/app/js/suimobile/css/sm-extend.min.css">
+    <link rel="stylesheet" href="/app/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="/app/css/proManage.css">
+
+  </head>
+  <body>
+    <div class="page-group collection-page" >
+      <div class="page page-current" id="product_list">
+        <!-- 首部 -->
+        <header class="bar bar-nav">
+          <a href="javascript:;" class="icon icon-left pull-left"></a>
+          <div class="buttons-row">
+            <a href="#tab1" class="tab-link active button">我销售的</a>
+            <a href="#tab2" class="tab-link button" onclick="TabListView.loadData('tab2');">我提供的</a>
+          </div>
+        </header>
+      <!-- 内容 -->
+        <div class="content">
+          <div class="tabs">
+            <div id="tab1" class="tab active infinite-scroll">
+            	<div class="list-container">
+				</div>
+              	<!-- 加载提示符 -->
+				<div class="infinite-scroll-preloader">
+					<div class="preloader">
+					</div>
+				</div>
+				
+				<!-- 底部添加商品按钮 -->
+				<div class="add-rad">
+					<a href="javascript:;" onclick="Router.go('goods_edit.html')">添加</a>
+				</div>
+            </div>
+            
+            <div id="tab2" class="tab infinite-scroll">
+            	<div class="list-container">
+				</div>
+              	
+              	<!-- 加载提示符 -->
+				<div class="infinite-scroll-preloader">
+					<div class="preloader">
+					</div>
+				</div>
+				
+				<!-- 底部添加产品按钮 -->
+                <div class="add-rad">
+                    <a href="javascript:;" onclick="Router.go('product_edit.html')">添加</a>
+                </div>
+            </div>
+          </div>
+          <span id="tophovertree" title="返回顶部"></span>
+        </div>
+      </div>
+    </div>
+
+  <script type="text/javascript" src='/app/js/zepto/zepto.min.js' charset='utf-8'></script>
+  <script type="text/javascript" src='/app/js/zepto/zepto.cookie.min.js' charset='utf-8'></script>
+  <script type="text/javascript" src='/script/zepto/fx.js' charset='utf-8'></script>
+  <script type="text/javascript" src='/script/zepto/fx_methods.js' charset='utf-8'></script>
+  <script type="text/javascript" src='/app/js/suimobile/js/sm.min.js' charset='utf-8'></script>
+  <script type="text/javascript" src='/app/js/suimobile/js/sm-extend.min.js' charset='utf-8'></script>
+  <script type="text/javascript" src="/app/js/greencube/greencube.app.js"></script>
+  <script type="text/javascript" src="/app/js/greencube/greencube.business.js"></script>
+  <!-- css3免前缀插件 -->
+  <script type="text/javascript" src="/app/js/greencube/prefixfree.min.js"></script>
+  <script>
+  		ProductBusiness.product_list();
+  </script>
+  </body>
+</html>

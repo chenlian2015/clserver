@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>费用核算</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="/app/js/suimobile/css/sm.css">
+    <link rel="stylesheet" href="/app/js/suimobile/css/sm-extend.min.css">
+    <link rel="stylesheet" href="/app/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="/app/css/addProInfo.css">
+
+  </head>
+  <body class="bgfff">
+    <div class="page-group choice-list-page">
+      <div class="page page-current">
+        <!-- 首部 -->
+        <header class="bar bar-nav">
+          <a class="icon icon-left pull-left back confirm-title-ok" href="javascript:;"></a>
+          <div class="content-padded">
+            <div class="searchbar">
+              <div class="search-input">
+                <label class="icon icon-search" for="search"></label>
+                <input type="search" id="search" placeholder="输入关键字..." />
+              </div>
+            </div>
+          </div>
+        </header>
+      <!-- 内容 -->
+        <div class="content">
+          <div class="content-block">
+            <div class="buttons-row">
+              <a href="javascript:;" class="button button-row">服务类<span class="icon icon-caret"></span></a>
+              <a href="javascript:;" class="button button-row">实物类<span class="icon icon-caret"></span></a>
+              <a href="javascript:;" class="button button-row">其它</a>
+            </div>
+          </div>
+          <div class="tabs tabs_list">
+            <div id="tab1" class="tab tab-row">
+              <div>
+                <h6>服务类</h6>
+                <ul class="content-ser-list">
+                  <li><a href="javascript:;">就医服务</a><a href="javascript:;">金融服务</a></li>
+                  <li><a href="javascript:;">医疗服务</a><a href="javascript:;">法律服务</a></li>
+                  <li><a href="javascript:;">保险服务</a><a href="javascript:;">生活服务</a></li>
+                </ul>
+              </div>
+            </div>
+            <div id="tab2" class="tab tab-row">
+              <div>
+                <h6>实物类</h6>
+                <ul class="content-ser-list">
+                  <li><a href="javascript:;">实物类</a><a href="javascript:;">实物类</a></li>
+                  <li><a href="javascript:;">实物类</a><a href="javascript:;">实物类</a></li>
+                  <li><a href="javascript:;">实物类</a><a href="javascript:;">实物类</a></li>
+                </ul>
+              </div>
+            </div>
+            <div id="tab3" class="tab tab-row">
+            </div>
+          </div>
+          <div class="tab-content">
+            <div class="shop-list">
+              <div class="pro-inf">
+                <img src="/themes/app/images/portrait.jpg" alt="图片" />
+                <div class="rig-inf">
+                  <ul>
+                    <li>专家会诊是的范德萨发生的都是地方</li>
+                    <li>背景儿童医院</li>
+                    <li>&yen;4500</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="shop-list">
+              <div class="pro-inf">
+                <img src="/themes/app/images/portrait.jpg" alt="图片" />
+                <div class="rig-inf">
+                  <ul>
+                    <li>专家会诊是的范德萨发生的都是地方</li>
+                    <li>背景儿童医院</li>
+                    <li>&yen;4500</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="shop-list">
+              <div class="pro-inf">
+                <img src="/themes/app/images/portrait.jpg" alt="图片" />
+                <div class="rig-inf">
+                  <ul>
+                    <li>专家会诊是的范德萨发生的都是地方</li>
+                    <li>背景儿童医院</li>
+                    <li>&yen;4500</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 已选项目 -->
+          <div class="choice-mask">
+            <div class="choice-num">已选项目(<span>6</span>)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <script type="text/javascript" src='/app/js/zepto/zepto.min.js' charset='utf-8'></script>
+  <!-- 阻止路由 -->
+  <script>
+  $.config={router:false}
+  </script>
+  <script type="text/javascript" src='/app/js/suimobile/js/sm.min.js' charset='utf-8'></script>
+  <script type="text/javascript" src='/app/js/suimobile/js/sm-extend.min.js' charset='utf-8'></script>
+
+  <!-- css3免前缀插件 -->
+  <script type="text/javascript" src="/app/js/greencube/prefixfree.min.js"></script>
+  <script>
+    $(".button-row").each(function(index, el) {
+      $(this).bind('click', function(event) {
+        $(this).siblings().removeClass('active');
+        $(".tab-row").eq(index).siblings().removeClass('active');
+        $(this).toggleClass('active');
+        $(".tab-row").eq(index).toggleClass('active');
+      });
+    });
+  </script>
+  </body>
+</html>

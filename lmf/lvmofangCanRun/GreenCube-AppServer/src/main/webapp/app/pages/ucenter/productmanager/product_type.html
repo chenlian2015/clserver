@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <title>
+            产品类型
+        </title>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1"/>
+        <link rel="shortcut icon" href="/favicon.ico"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+        <link rel="stylesheet" href="/app/js/suimobile/css/sm.css"/>
+        <link rel="stylesheet" href="/app/js/suimobile/css/sm-extend.min.css"/>
+        <link rel="stylesheet" href="/app/css/common.css" />
+        <link rel="stylesheet" type="text/css" href="/app/css/addProInfo.css"/>
+    </head>
+    <body>
+        <div class="page-group services_type_page" >
+            <div class="page page-current">
+                <!-- 首部 -->
+                <header class="bar bar-nav">
+                    <a class="icon icon-left pull-left back confirm-title-ok" href="javascript:;">
+                    </a>
+                    <a class="icon pull-right login-text preservation" href="javascript:;">
+                        确定
+                    </a>
+                    <h1 class="title title-whi">
+                        产品类型
+                    </h1>
+                </header>
+                <!-- 内容 -->
+                <div class="content">
+                    <div class="servers_list">
+                        <div class="class_server">
+                            <div class="com_top_serv servers_cla">服务类<span class="icon icon-up"></span></div>
+                            <div class="seve_class_list clearfix">
+                                <ul>
+                                  <li>就医服务<span class="icon check_icon"></span></li>
+                                  <li>金融服务<span class="icon check_icon"></span></li>
+                                  <li>医疗服务<span class="icon check_icon"></span></li>
+                                  <li>法律服务<span class="icon check_icon"></span></li>
+                                  <li>保险服务<span class="icon check_icon"></span></li>
+                                  <li>生活服务<span class="icon check_icon"></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="class_server">
+                            <div class="com_top_serv servers_cla">实物类<span class="icon icon-up"></span></div>
+                            <div class="seve_class_list clearfix">
+                                <ul>
+                                  <li>就医服务<span class="icon  check_icon"></span></li>
+                                  <li>金融服务<span class="icon  check_icon"></span></li>
+                                  <li>医疗服务<span class="icon  check_icon"></span></li>
+                                  <li>法律服务<span class="icon  check_icon"></span></li>
+                                  <li>保险服务<span class="icon  check_icon"></span></li>
+                                  <li>生活服务<span class="icon  check_icon"></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="class_server">
+                            <div class="com_top_serv servers_cla">其它<span class="icon icon-up"></span></div>
+                            <div class="seve_class_list clearfix">
+                                <ul>
+                                  <li>就医服务<span class="icon  check_icon"></span></li>
+                                  <li>金融服务<span class="icon  check_icon"></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src='/app/js/zepto/zepto.min.js' charset='utf-8'>
+        </script>
+        <!-- 阻止路由 -->
+        <script>
+            $.config={router:false}
+        </script>
+        <script type="text/javascript" src='/app/js/suimobile/js/sm.min.js' charset='utf-8'>
+        </script>
+        <script type="text/javascript" src='/app/js/suimobile/js/sm-extend.min.js' charset='utf-8'>
+        </script>
+        <!-- css3免前缀插件 -->
+        <script type="text/javascript" src="/app/js/greencube/prefixfree.min.js">
+        </script>
+        <script>
+        $(".check_icon").each(function(index, el) {
+          $(this).bind('click',function(event) {
+            $(this).toggleClass('icon-check');
+            if($(this).hasClass('icon-check')){
+              $(this).css("border","none");
+            }else{
+              $(this).css("border","1px solid #b2b2b2");
+            }
+          });
+        });
+        $(".com_top_serv").each(function(index, el) {
+          $(this).bind('click',function(event) {
+            $(this).next().toggle();
+            $(this).find(".icon-up").toggleClass('rotate_down');
+          });
+        });
+        </script>
+    </body>
+</html>

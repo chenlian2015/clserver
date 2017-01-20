@@ -1,0 +1,55 @@
+@charset "utf-8";
+/* CSS Document */
+
+.guide_banner{ width:100%; min-width:1100px; background:url(../images/guide_banner_bg_02.png) center no-repeat; background-color:#3399ff; height:427px;}
+#header{ padding-top:33px; height:70px;}
+.wrap{ width:1100px; margin: auto;}
+.guide_main{ width:1000px; margin:0 auto; padding-top:54px; }
+.guide_main_hd{ width:1000px; border-bottom:1px solid #3399ff; background:url(../images/guide_m_hdbg_05.png) no-repeat; font-size:26px; line-height:37px; color:#fff; font-weight:normal; text-indent:2em; letter-spacing:2px;}
+.guide_main .guide_flow{ width:1000px; height:170px; border-bottom:1px dashed #d4d4d4; padding-top:30px;}
+.flow_hd{ font-size:21px; color:#3e3a39; text-indent:1.3em; background:url(../images/flow_ico_12.png) no-repeat 0 5px; font-weight:normal; letter-spacing:1px;} 
+.guide_flow img{ margin-top:25px; margin-bottom:12px; margin-left:30px;}
+.guide_flow p{ margin-left:30px; font-size:14px; color:#727171;}
+.guide_main .guide_direct{ width:1000px; height:490px;padding-top:30px;}
+.guide_direct .direct{ width:960px; height:43px;margin-top:25px;margin-left:30px; background:url(../images/direct_bg_10.png) no-repeat;}
+.guide_direct .direct p{ font-size:15px; color:#727171; line-height:43px;}
+.guide_direct .direct_choice{ width:763px; height:277px; border:1px solid #c5dae2; margin:50px auto 0;}
+.direct_choice .choice_top{ width:194px; height:30px; background-color:#4a6070; color:#fff; font-size:17px; text-align:center; margin:-15px auto 0; line-height:30px;}
+.direct_choice ul{ padding-top:27px; margin-left:28px;}
+.direct_choice ul li{ width:236px; text-align:center; float:left;}
+.direct_choice ul li img{ margin:0 auto;}
+.direct_choice ul li h5{ color:#3e3a39; font-size:17px; font-weight:normal; margin-top:13px;}
+.direct_choice ul li p{ text-align:left; margin:12px auto; line-height:20px;}
+.direct_choice ul li a{ color:#3e3a39; font-size:15px; text-decoration:underline}
+.direct_choice ul li a:hover{ color:#5aaf00;}
+.guide_main_hds{width:1000px; border-bottom:1px solid #3399ff; background:url(../images/guide_m_hdbgs_47.png) no-repeat;font-size:26px; line-height:37px; color:#fff; font-weight:normal; text-indent:2em; letter-spacing:2px;}
+.flow_txt{ font-size:19px; color:#595757;margin-top:15px; margin-bottom:19px; margin-left:26px; display:block; height:30px;}
+.flow_txt span{ float:left; }
+.guide_main_hdf{ margin-top:30px;width:1000px; border-bottom:1px solid #3399ff; background: url(../images/guide_m_hdbgf_54.png) no-repeat;font-size:26px; line-height:37px; color:#fff; font-weight:normal; text-indent:2em; letter-spacing:2px;}
+.guide_area{ width:1000px; height:93px; background-color:#fbfdff; margin-top:30px;}
+.area_nav{ width:95px; height:83px; background-color:#3399ff; color:#fff; font-size:21px; text-align:center; line-height:40px; padding-top:10px; letter-spacing:2px; float:left;} 
+.sl_box{ float:left; font-size:15px; color:#4a6070; font-weight: bold; padding-top:8px;padding-left:24px; padding-right:30px;white-space: nowrap;}
+.sl_box a{ padding-left:15px; color:#727171; font-weight:normal;}
+.sl_box a:hover{ text-decoration:underline; }
+.sheet_box{ width:1000px; margin:30px auto 40px;;}
+.sheet_box table{ width:100%}
+.sheet_box table th,.sheet_box table td{  border:1px solid #c5dae2; text-align:center; }
+.sheet_box table th{ font-size:15px; font-family:"黑体"; background-color:#4a6070; height:39px; line-height:39px; border-top:1px solid #4a6070; color:#fff;}
+.sheet_box table td{ height:34px; font-size:16px; color:#3e3a39; font-family:"宋体"；}
+.shengfen{ font-family:'黑体'; font-weight:bold; font-size:15px;}
+.sheet_box table a{color:#e95514}
+.sheet_box table .sheet_notice{ color:#3399ff;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

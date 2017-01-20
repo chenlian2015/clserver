@@ -1,0 +1,61 @@
+@charset "UTF-8";
+body{margin:0; padding:0; background-image:url(../images/sp_bg.jpg);}
+
+li{list-style-type:none;}
+
+img{ border:none;}
+
+#box_left{ width:100%; float:left;}
+
+
+/*---------------------------------------------- sp_right  ---------------------------------*/
+.right_top,.right_top1{ background-repeat:no-repeat; background-position:left;  width:100%; float:left}
+.right_top{ background-image:url(../images/sp_bg1.jpg);height:37px; padding-top:20px;}
+.right_top1{ background-image:url(../images/sp_bg2.jpg); height:40px;}
+.top_1{ width:50px; height:20px; text-align:center; margin-left:78px; margin-top:3px; float:left;}
+.top_2{ width:24px; height:20px; text-align:center; margin-top:3px; float:left}
+.top_3{ margin-left:10px; text-align:left; margin-top:5px; float:left}
+.right_sp,.right_sp1{ margin-left:22px; width:97%; float:left; text-align:center}
+.right_sp{ background-color:#000}
+.right_sp1{ background-color:#000; height:36px; }
+#ksjsbox{ 
+   width:300px;
+ 
+  float:left;
+   padding:0;
+   margin:0;
+ height:36px; }
+.ksjs ul{list-style:none; margin:0 } 
+.ksjs li{float:left;width:80px;vertical-align:middle; line-height:36px; font-size:12px; font-family: "Adobe 宋体 Std R" ; } 
+.ksjs a{display:block;text-align:center; } 
+.ksjs a:link{color:#b3bac0;text-decoration:none;} 
+.ksjs a:visited{color:#b3bac0;text-decoration:underline;} 
+.ksjs a:hover{ color:#b3bac0;text-decoration:none;} 
+#ksjsbox1{  width:150px; height:36px;  float:right; }
+.right_botton{ margin-left:110px; float:left; bottom:0px ; margin-top:10px; vertical-align:bottom}
+
+/*---------------------------------------------- sp_left  ---------------------------------*/
+.left_botton{ margin-top:14px; float:left}
+.left_box{ width:320px; background-color:#f6f7fb;  float:left}
+.left_1{  width:306px; height:84px; padding-top:14px; padding-left:14px; background-color:#a9aaae; float:left}
+.left_2{ width:155px; float:left}
+.left_3{ width:120px; height:66px; margin-left:15px; float:left}
+.left_4{ width:300px; height:34px; padding-left:20px; padding-top:10px; background-color:#d2d5da; float:left}
+.left_5{ width:320px; float:left;}
+
+.table {}
+.table tr{ background-image:url(../images/spbotton_bg1.jpg); background-repeat:no-repeat; background-position:left; width:320px; height:36px; font-size:12px; color:#f6f7fb }
+.table tr:hover{ background-image:url(../images/spbotton_bg2.jpg); background-repeat:no-repeat;  }
+.table td{ font-family:"Adobe 黑体 Std R";font-size:13px; color:#a2a2a4 }
+.table td a{ font-family:"Adobe 黑体 Std R";font-size:13px; color:#a2a2a4 ; text-decoration:none;}
+.table td a:hover{ font-family:"Adobe 黑体 Std R";font-size:13px; color:#a2a2a4 ; text-decoration:none;}
+
+
+/*---------------------------------------------- T  ---------------------------------*/
+.T1,.T2{ font-family:"Adobe 黑体 Std L"; font-size:12px; line-height:20px;}
+.T1{ color:#949492;}
+.T2{ color:#000;}
+.T3,.T4,.T5{ font-family:"Adobe 黑体 Std L"; line-height:20px; color:#c3c4c6; }
+.T3{color:#c3c4c6; font-size:14px; }
+.T4{color:#000; font-size:14px; }
+.T5{ color:#666666;font-size:13px; }

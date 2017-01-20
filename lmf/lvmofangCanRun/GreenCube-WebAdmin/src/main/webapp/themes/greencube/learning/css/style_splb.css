@@ -1,0 +1,35 @@
+@charset "UTF-8";
+body{margin:0; padding:0; background-image:url(../images/sp_bg3.jpg); background-repeat:repeat-y; background-position:left; background-color:#696a6f}
+
+li{list-style-type:none;}
+
+img{ border:none;}
+
+
+/*---------------------------------------------- sp_left  ---------------------------------*/
+.left_botton{ margin-top:14px; float:left}
+.left_box{ width:320px; background-color:#f6f7fb;  float:left}
+.left_1{  width:306px; height:84px; padding-top:14px; padding-left:14px; background-color:#a9aaae; float:left}
+.left_2{ width:155px; float:left}
+.left_3{ width:120px; height:66px; margin-left:15px; float:left}
+.left_4{ width:300px; height:34px; padding-left:20px; padding-top:10px; background-color:#d2d5da; float:left}
+.left_5{ width:320px; float:left;}
+
+
+.table td a:hover{ font-family:"Adobe 黑体 Std R";font-size:13px; color:#a2a2a4 ; text-decoration:none;}
+
+.div-line{ background-image:url(../images/spbotton_bg1.jpg); background-repeat:no-repeat; background-position:left; width:320px; height:36px; font-size:12px; color:#f6f7fb }
+.div-line:hover{ background-image:url(../images/spbotton_bg2.jpg); background-repeat:no-repeat;  }
+
+.div-line div{ font-family:"Adobe 黑体 Std R";font-size:13px; color:#a2a2a4 }
+.div-line div a{ font-family:"Adobe 黑体 Std R";font-size:13px; color:#a2a2a4 ; text-decoration:none;}
+.div-line div a:hover{ font-family:"Adobe 黑体 Std R";font-size:13px; color:#a2a2a4 ; text-decoration:none;}
+
+/*---------------------------------------------- T  ---------------------------------*/
+.T1,.T2{ font-family:"Adobe 黑体 Std L"; font-size:12px; line-height:20px;}
+.T1{ color:#949492;}
+.T2{ color:#000;}
+.T3,.T4,.T5{ font-family:"Adobe 黑体 Std L"; line-height:20px; color:#c3c4c6; }
+.T3{color:#c3c4c6; font-size:14px; }
+.T4{color:#000; font-size:14px; }
+.T5{ color:#666666;font-size:13px; }

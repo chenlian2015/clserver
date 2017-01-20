@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+	<display-name>GreenTubeServer</display-name> 
+	<description>GreenTubeServer Backend V1.0</description>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath*:/spring.xml
+		</param-value>
+	</context-param>
+	
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+
+	<filter>
+		<filter-name>encodingConvertFilter</filter-name>
+		<filter-class>com.cnd.greencube.server.web.filter.EncodingConvertFilter</filter-class>
+		<init-param>
+			<param-name>fromEncoding</param-name>
+			<param-value>ISO-8859-1</param-value>
+		</init-param>
+		<init-param>
+			<param-name>toEncoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	
+	<!-- <filter>
+		<filter-name>ParameterFilter</filter-name>
+		<filter-class>net.top.filter.parameter.ParameterFilter</filter-class>
+		<init-param>
+			<param-name>multipartResolverBeanName</param-name>
+			<param-value>multipartResolver</param-value>
+		</init-param>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>ParameterFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> -->
+	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<listener>
+		<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+	</listener>
+	
+	<!-- 配置StatViewServlet用于展示Druid的统计信息 -->
+	<servlet>
+      	<servlet-name>DruidStatView</servlet-name>
+      	<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+      	<!-- 不支持IPV6-->
+		<!-- ip过滤 允许  128.242.127.1/24 24表示，前面24位是子网掩码，比对的时候，前面24位相同就匹配-->
+		<!--  
+		<init-param>
+        	<param-name>allow</param-name>
+        	<param-value>128.242.127.1/24,128.242.128.1</param-value>
+    	</init-param>
+		-->
+    	<!-- 拒绝-->
+    	<!--  
+    	<init-param>
+        	<param-name>deny</param-name>
+        	<param-value>128.242.127.4</param-value>
+    	</init-param>
+    	-->
+    	<init-param>
+        	<param-name>loginUsername</param-name>
+        	<param-value>94top</param-value>
+    	</init-param>
+    	<init-param>
+        	<param-name>loginPassword</param-name>
+        	<param-value>Te@cherMe</param-value>
+    	</init-param>
+    	<!-- 监控页面重置按钮开关  -->
+		<init-param>
+        	<param-name>resetEnable</param-name>
+        	<param-value>true</param-value>
+    	</init-param>
+  	</servlet>
+  	<servlet-mapping>
+      	<servlet-name>DruidStatView</servlet-name>
+      	<url-pattern>/druid/*</url-pattern>
+  	</servlet-mapping>
+  
+	<!-- 配置webAppRootKey -->
+	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>GreenTube</param-value>
+	</context-param>
+
+	<session-config>
+		<session-timeout>0</session-timeout>
+	</session-config>
+</web-app>

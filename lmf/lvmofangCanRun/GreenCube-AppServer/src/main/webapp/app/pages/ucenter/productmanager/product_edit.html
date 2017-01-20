@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>我的收藏</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="/app/js/suimobile/css/sm.css">
+    <link rel="stylesheet" href="/app/js/suimobile/css/sm-extend.min.css">
+    <link rel="stylesheet" href="/app/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="/app/css/addProInfo.css">
+
+  </head>
+  <body>
+    <div class="page-group product-infor-page" >
+      <div class="page page-current">
+        <!-- 首部 -->
+        <header class="bar bar-nav">
+          <a class="icon icon-left pull-left back confirm-title-ok" href="javascript:;"></a>
+          <h1 class="title title-whi">产品信息</h1>
+        </header>
+      <!-- 内容 -->
+        <div class="content">
+          <section>
+          	<form id="form_product_edit">
+	            <h5 class="title-pro">产品描述</h5>
+	            <div class="product-name">
+	              <h6 style="margin-top:0;">产品名称*</h6>
+	              <textarea name="name" id="name" class="input-name-pro"></textarea>
+	            </div>
+	            <div class="product-name">
+	              <h6>产品类型*</h6>
+	              <div class="product-wrap"><a class="icon icon-right pull-left link-type" href="javascript:;"></a></div>
+	            </div>
+	            <div class="product-name">
+	              <h6>产品有效期*</h6>
+	              <div class="product-wrap"><a class="icon icon-right pull-left link-type" href="javascript:;"></a></div>
+	            </div>
+	            <div class="product-name">
+	              <h6>服务排期*</h6>
+	              <div class="product-wrap"><a class="icon icon-right pull-left link-type" href="javascript:;"></a></div>
+	            </div>
+	            <div class="product-name">
+	              <h6>产品说明*</h6>
+	              <textarea name="introduction" id="introduction" class="input-name-pro"></textarea>
+	            </div>
+	            <div class="product-name">
+	              <h6>产品内容/流程/规范*</h6>
+	              <textarea name="desc" id="desc" class="input-name-pro"></textarea>
+	            </div>
+	            <div class="product-name">
+	              <h6>产品定价*</h6>
+	              <textarea name="realFee" id="realFee" class="input-name-pro"></textarea>
+	            </div>
+	            <div class="product-name">
+	              <h6>产品图片(最多选择五张)</h6>
+	              <span class="fileElem">
+	              </span>
+	            </div>
+	            <div class="product-name">
+	              <h6 class="cblack" style="color:black;">相关资质照片</h6>
+	              <span class="fileElem">
+	              </span>
+	            </div>
+	            <a href="javascript:;" class="sub-btn">提交</a>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+
+	<script type="text/javascript" src='/app/js/zepto/zepto.min.js' charset='utf-8'></script>
+	<script type="text/javascript" src='/app/js/zepto/zepto.cookie.min.js' charset='utf-8'></script>
+	<script type="text/javascript" src='/script/zepto/fx.js' charset='utf-8'></script>
+	<script type="text/javascript" src='/script/zepto/fx_methods.js' charset='utf-8'></script>
+	<script type="text/javascript" src='/app/js/suimobile/js/sm.min.js' charset='utf-8'></script>
+	<script type="text/javascript" src='/app/js/suimobile/js/sm-extend.min.js' charset='utf-8'></script>
+	<script type="text/javascript" src="/app/js/greencube/greencube.app.js"></script>
+	<script type="text/javascript" src="/app/js/greencube/greencube.business.js"></script>
+	
+	<!-- css3免前缀插件 -->
+	<script type="text/javascript" src="/app/js/greencube/prefixfree.min.js"></script>
+	<script>
+		ProductBusiness.product_edit();
+	</script>
+  </body>
+</html>

@@ -1,0 +1,110 @@
+﻿
+
+/*我的收藏*/
+/*全部*/
+.quanbu_sc{ width:770px;}
+.quanbu_sc dl{width:180px; height:200px; border:1px #d5d5d5 solid; float:left; margin-right:10px; margin-bottom:22px;}
+.quanbu_sc dl dt{ 
+    text-align:center;
+    position:relative;
+    padding: 10px 10px 0 10px;
+    overflow: hidden;
+    font-size: 0;
+}
+.quanbu_sc dl dt div{
+    font-size: 0;
+    width: 160px;
+    overflow: hidden;
+    height: 100px;
+}
+.shanchu{ 
+    position:absolute; 
+    top:10px; 
+    left:10px; 
+    cursor:pointer;
+    display: none;
+}
+
+.quanbu_sc dl dd{ width:180px; text-align:center;}
+.quanbu_sc dl dd div{ width:163px; height:23px; border:1px #5aaf00 solid; margin-left:8px;}
+.quanbu_sc dl dd div a{
+    display: block;
+}
+.quanbu_sc dl dd div a{ color:#5aaf00; display:inline-block;width:163px; height:23px;}
+.quanbu_sc dl dd div a:hover{ background:#5aaf00; color:#FFFFFF;}
+.quanbu_sc dl dt:hover .shanchu{
+    display: block;
+}
+.quanbu_sc .title{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    margin-top:5px; margin-bottom:5px; color:#231815; width:180px; height:20px; line-height:20px; 
+}
+/*全部 end*/
+/*图书收藏*/
+.tushu{ width:800px; margin-top:20px;}
+.tushu>ul{ width:790px; height:165px; margin:0px auto;margin-left:20px; border-bottom:1px #DDDDDD solid;}
+.tushu>ul:hover{ width:788px; height:163px;border:1px #9ccf66 solid; background:#f5fff5;}
+.tushu>ul>li{ float:left; margin-left:20px; line-height:30px; margin-top:20px;}
+.tushu>ul>li span{ color:#999999; font-size:12px; margin-left:5px;}
+.gm{ width:95px; height:35px; border:1px #acd77f solid; line-height:35px; text-align:center;}
+.gm a{ color:#5aaf00; display:inline-block;width:95px; height:35px;}
+.gm a:hover{ background:#5aaf00; color:#FFFFFF;}
+.tushu_sc{width:95px; height:35px; border:1px #e6e6e6 solid; line-height:35px; text-align:center; background:#f7f7f7; margin-top:10px;}
+.tushu_sc a{ color:#727171;display:inline-block;width:95px; height:35px;}
+
+.tushu_sc1{width:95px; height:35px; border:1px #e6e6e6 solid; line-height:35px; text-align:center; background:#f7f7f7; margin-top:10px;}
+.tushu_sc1 a{ color:#727171;display:inline-block;width:95px; height:35px;}
+/*图书收藏 end*
+
+/*机构收藏*/
+.jigou{width:800px; margin-top:20px;}
+.jigou>ul{width:790px; height:165px; margin:0px auto;margin-left:20px; border-bottom:1px #DDDDDD solid;}
+.jigou>ul:hover{width:788px; height:163px;border:1px #9ccf66 solid; background:#f5fff5;}
+.jigou>ul>li{float:left; margin-left:20px; line-height:25px; margin-top:20px;}
+.jigou>ul>li>ul>li{ overflow:hidden;}
+.jigou>ul>li i{ background:url(../../../images/dingjian/dingjian/tubiao.png) no-repeat; display:inline-block; width:20px; height:17px;vertical-align: middle; margin-right:5px; }
+.jigou>ul>li span{ color:#727171;font-size:12px; margin-left:5px;}
+
+/*机构收藏 end*/
+/*我的收藏*/
+/*弹出框*/
+.tanchu_beijing{ width:100%; height:100%; background:rgba(27,27,27,0.3); position: absolute; top:0px; left:0px;}
+.shanchu_tishi{ width:330px; height:190px; border:2px #606060 solid; position:fixed; top:40%; left:40%; background:rgba(255,255,255,1.00);}
+.shanchu_tishi h3{ background:#606060; height:45px; line-height:45px; padding-left:20px; color:#FFFFFF;}
+.shanchu_tishi>ul>li{ text-align:center; margin-top:20px;}
+.shanchu_tishi>ul>p{ float:left; text-align:center; width:60px; height:35px; color:#FFFFFF; cursor:pointer; line-height:35px; margin-top:30px;  margin-left:30px;}
+
+
+
+/*个人注册*/
+.luse{ background:#5aaf00; width:100%; height:5px;}
+.icon_dianhua{ background:url(../../images/dingjian/zhuce_dianhua.png) no-repeat; display:inline-block; width:16px; height:16px; vertical-align:middle; margin-right:5px;}
+.zhuce_logo{ width:1000px; height:100px; margin:0px auto;}
+/*注册内容*/
+.form_nr{ position:relative;}
+.form_nr .error_tip{  font-size: 12px;  z-index:10; border:1px #ea5514 solid;   position:absolute; top:-28px;   padding-left:26px; padding-right:16px; background:#fff2f2 url(../../images/dingjian/error_tips.png) 5px 6px no-repeat; height:28px; line-height:28px;}
+.form_nr .error_tip span{ display:block; height:28px; width:100%; position:relative;}
+.form_nr .error_tip span:after{ display:inline-block; position:absolute; overflow:hidden; content:""; width:12px; height:8px; background:url(../../images/dingjian/error_tips_sj.png) no-repeat; left:0px; top:28px;}
+.clearfix:after {
+visibility: hidden;
+display: block;
+font-size: 0;
+content: ".";
+clear: both;
+height: 0;
+}
+.yonghu_zhuce>form>table>tbody>tr>th{ color:#727171}
+
+.zhuce_beijing{ background:#f7f7f7; width:100%; height:650px;}
+.zhuce_beijing>.yonghu_zhuce{ width:805px; height:550px; background:#FFFFFF; margin:0px auto;}
+.yonghu_zhuce>p{ width:720px; height:58px; border-bottom: 1px #d5d5d5 dashed; margin-left:20px; line-height:58px; color:#5aaf00; font-size:20px; margin-bottom:20px;} 
+
+/*版权*/
+.banquan{ width:100%; height:375px; text-align:center;}
+.banquan p{ font-size:12px; color:#9fa0a0; margin-top:20px;}
+
+

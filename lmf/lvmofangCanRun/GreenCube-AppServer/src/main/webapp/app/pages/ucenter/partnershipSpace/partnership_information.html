@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <title>
+            发布合伙信息
+        </title>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1"/>
+        <link rel="shortcut icon" href="/favicon.ico"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+        <link rel="stylesheet" href="/app/js/suimobile/css/sm.css"/>
+        <link rel="stylesheet" href="/app/js/suimobile/css/sm-extend.min.css"/>
+        <link rel="stylesheet" href="/app/css/common.css" />
+        <link rel="stylesheet" type="text/css" href="/app/css/addProInfo.css"/>
+    </head>
+    <body class="bgfff">
+        <div class="page-group part_infor_page">
+            <div class="page page-current">
+                <!-- 首部 -->
+                <header class="bar bar-nav">
+                    <a class="icon icon-left pull-left back confirm-title-ok" href="javascript:;">
+                        返回
+                    </a>
+                    <h1 class="title title-whi">
+                        发布合伙信息
+                    </h1>
+                </header>
+                <!-- 内容 -->
+                <div class="content">
+                    <div class="release_box">
+                        <textarea name="" id="translate_input" placeholder="发布你的合伙信息吧,让平台所有用户了解你的信息。(100字以内)" maxlength="100"></textarea>
+                        <div class="text_quantity">
+                            <span class="surplus">0</span>/
+                            <span class="total">100</span>
+                        </div>
+                    </div>
+                    <div class="list-block ">
+                        <ul>
+                            <li class="item-content item-link">
+                                <div class="item-inner">
+                                    <div class="item-title">合作地区</div>
+                                    <div class="item-after">北京</div>
+                                </div>
+                            </li>
+                            <li class="item-content item-link">
+                                <div class="item-inner">
+                                    <div class="item-title">合作类型</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="wrap_release">
+                        <a href="javascript:;" class="release_button">发布</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src='/app/js/zepto/zepto.min.js' charset='utf-8'>
+        </script>
+        <!-- 阻止路由 -->
+        <script>
+        $.config={router:false}
+        </script>
+        <script type="text/javascript" src='/app/js/suimobile/js/sm.min.js' charset='utf-8'>
+        </script>
+        <script type="text/javascript" src='/app/js/suimobile/js/sm-extend.min.js' charset='utf-8'>
+        </script>
+        <!-- css3免前缀插件 -->
+        <script type="text/javascript" src="/app/js/greencube/prefixfree.min.js">
+        </script>
+        <script>
+            // 评论框
+            $(function () {
+                var text=$("#translate_input").val();
+                var counter=text.length;
+                $(".surplus").text(counter);
+                $("#translate_input").bind('focus',filter_time);
+            })
+            var str = '';
+            var now = '';
+            filter_time = function(){
+                var time = setInterval(filter_staff_from_exist, 100);
+                $(this).bind('blur',function(){
+                    clearInterval(time);
+                });
+            };
+            filter_staff_from_exist = function(){
+               now = $("#translate_input").val();
+               if (now != '' && now != str) {
+                   console.log(now.length);
+                   var counter=now.length;
+                   $(".surplus").text(counter);
+                   if(parseInt($(".surplus").text())>100){
+                       $(".surplus").text('100');
+                       var val = $("#translate_input").val().substring(0,100);
+                       $("#translate_input").val(val);
+                   }
+               }
+               str = now;
+            }
+
+            $(".release_button").bind('click', function(event) {
+                $.toast("发布成功");
+            });
+        </script>
+    </body>
+</html>
