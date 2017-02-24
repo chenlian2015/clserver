@@ -5,6 +5,7 @@
 	<artifactId>cl</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
+
 	<name>cl Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
@@ -249,8 +250,46 @@
 			<artifactId>json</artifactId>
 			<version>20140107</version>
 		</dependency>
+
+		<dependency>
+			<groupId>yuhuayuanZhiGe</groupId>
+			<artifactId>serviceimpl</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>yuhuayuanZhiGe</groupId>
+			<artifactId>service-api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<finalName>cl</finalName>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<configuration>
+					<path>/cl</path>
+					<uriEncoding>UTF-8</uriEncoding>
+					<port>8080</port>
+					<ignorePackaging>true</ignorePackaging>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.2</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+
+		</plugins>
 	</build>
 </project>

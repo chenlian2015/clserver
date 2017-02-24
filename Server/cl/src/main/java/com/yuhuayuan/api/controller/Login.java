@@ -7,16 +7,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yuhuayuan.core.base.datasource.DataAccess;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,14 +56,21 @@ public class Login {
 	
     @Autowired
     protected RedisCacheService cacheService;
-    
-    
 
-    
+
+    void test()
+	{
+
+		DataAccess dataAccess = new DataAccess();
+		dataAccess.test();
+
+	}
+
     @RequestMapping(value = "test.do")
     private @ResponseBody void test(HttpServletRequest request, HttpServletResponse response)
 	{
-    	
+
+		test();
     	String strResult = "";
     	try {
 
@@ -107,7 +110,7 @@ public class Login {
 	private @ResponseBody GsonResult login(HttpServletRequest request, HttpServletResponse response)
 	{
 		User u = null;
-		ControllTool.LogRequest(request, logger);
+		//ControllTool.LogRequest(request, logger);
 		try
 		{
 			
