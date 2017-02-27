@@ -12,7 +12,8 @@ import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.yuhuayuan.core.base.datasource.DataAccess;
+import com.yuhuayuan.core.model.entity.version;
+import com.yuhuayuan.core.service.appversion.VersionService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,12 +58,21 @@ public class Login {
     @Autowired
     protected RedisCacheService cacheService;
 
+	@Autowired
+	VersionService versionService;
 
     void test()
 	{
 
-		DataAccess dataAccess = new DataAccess();
-		dataAccess.test();
+		version versionDto = new version();
+		versionDto.setChannel("a");
+		versionDto.setName("a");
+		versionDto.setContent("c");
+		versionDto.setFileId(1);
+		versionDto.setCreateTime(new Date());
+		versionDto.setFileUrl("www");
+		versionDto.setFileName("filename");
+		versionService.addVersion(versionDto);
 
 	}
 

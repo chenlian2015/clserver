@@ -21,6 +21,14 @@
 	<context:component-scan base-package="com.yuhuayuan.core.service" />
 	<context:component-scan base-package="com.yuhuayuan.api.controller" />
 	<context:component-scan base-package="com.yuhuayuan.core.timer" />
+	<context:component-scan base-package="com.yuhuayuan.core.service.impl.version" />
+	<context:component-scan base-package="com.yuhuayuan.core.service.appversion" />
+	<context:component-scan base-package="com.yuhuayuan.core.model.dao" />
+
+
+
+
+
 
 	<task:annotation-driven />
 	<context:annotation-config />

@@ -2,33 +2,37 @@ package com.yuhuayuan.core.service.impl.version;
 
 import com.yuhuayuan.core.dto.version.VersionDto;
 import com.yuhuayuan.core.enums.GeneralStateEnum;
+import com.yuhuayuan.core.model.entity.version;
+import com.yuhuayuan.core.persistence.versionMapper;
 import com.yuhuayuan.core.service.appversion.VersionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
- * Created by cl on 2017/2/23.
+ * Created by cl on 2017/2/27.
  */
+@Service
 public class VersionServiceImpl implements VersionService {
-    @Override
-    public boolean addVersion(VersionDto versionDto) {
+    @Autowired
+    versionMapper versionMapperx;
+
+    public boolean addVersion(version versionDto) {
+        versionMapperx.insert(versionDto);
         return false;
     }
 
-    @Override
     public boolean updateVersionState(long id, GeneralStateEnum stateEnum) {
         return false;
     }
 
-    @Override
-    public boolean updateVersion(VersionDto versionDto) {
+    public boolean updateVersion(version versionDto) {
         return false;
     }
 
-    @Override
     public VersionDto selectVersionByid(long id) {
         return null;
     }
 
-    @Override
     public boolean queryByName(String name, String value, String channel, int plateform, int id) {
         return false;
     }

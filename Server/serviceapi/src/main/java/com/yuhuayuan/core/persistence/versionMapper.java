@@ -1,4 +1,4 @@
-package com.yuhuayuan.core.model.dao;
+package com.yuhuayuan.core.persistence;
 
 import com.yuhuayuan.core.model.entity.version;
 
