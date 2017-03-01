@@ -17,7 +17,7 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
         <!--生成Model类存放位置-->
-        <javaModelGenerator targetPackage="com.yuhuayuan.core.domain" targetProject="java">
+        <javaModelGenerator targetPackage="com.yuhuayuan.core.dto" targetProject="java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>

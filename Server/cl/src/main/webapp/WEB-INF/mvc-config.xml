@@ -16,17 +16,14 @@
         http://www.springframework.org/schema/task/spring-task-4.2.xsd">
 
 	<mvc:annotation-driven />
-	<context:component-scan base-package="com.yuhuayuan.core.domain" />
+	<context:component-scan base-package="com.yuhuayuan.core.dto" />
 	<context:component-scan base-package="com.yuhuayuan.core.persistence" />
 	<context:component-scan base-package="com.yuhuayuan.core.service" />
 	<context:component-scan base-package="com.yuhuayuan.api.controller" />
-	<context:component-scan base-package="com.yuhuayuan.core.timer" />
+	<context:component-scan base-package="com.yuhuayuan.core.component.timer" />
 	<context:component-scan base-package="com.yuhuayuan.core.service.impl.version" />
 	<context:component-scan base-package="com.yuhuayuan.core.service.appversion" />
-	<context:component-scan base-package="com.yuhuayuan.core.model.dao" />
-
-
-
+	<context:component-scan base-package="com.yuhuayuan.core.model.entity" />
 
 
 
@@ -82,7 +79,7 @@
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="typeAliasesPackage" value="com.yuhuayuan.core.domain" />
+		<property name="typeAliasesPackage" value="com.yuhuayuan.core.dto" />
 		<property name="typeHandlersPackage" value="com.yuhuayuan.core.typehandler" />
 	</bean>
 
@@ -141,7 +138,7 @@
 	</bean>
 
 	<!-- 多线程发送邮件， 和普通的消息分开， 主要是防止可能有阻塞， 避免引起相互影响 -->
-	<bean id="cacheService" class="com.yuhuayuan.core.service.RedisCacheService">
+	<bean id="cacheService" class="com.yuhuayuan.core.service.impl.RedisCacheService">
 		<property name="jedisPool" ref="jedisPool" />
 		<property name="defaultExpire" value="${cache.defaultExpire}" />
 	</bean>
@@ -157,7 +154,7 @@
 	</bean>
 
 	<mvc:interceptors>
-		<bean id="userTicketInterceptor" class="com.yuhuayuan.core.interceptor.LoginInteceptor">
+		<bean id="userTicketInterceptor" class="com.yuhuayuan.core.component.interceptor.LoginInteceptor">
 			<property name="excludeUrlPatterns">
 				<list>
 					<value>/**/login*</value>

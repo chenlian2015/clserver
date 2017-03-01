@@ -47,6 +47,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/../serviceapi/pom.xml" />
         <option value="$PROJECT_DIR$/../serviceimpl/pom.xml" />
+        <option value="$PROJECT_DIR$/../core/pom.xml" />
       </list>
     </option>
   </component>

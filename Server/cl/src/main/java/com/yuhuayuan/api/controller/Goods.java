@@ -13,12 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.fastjson.JSON;
-import com.yuhuayuan.api.controller.tool.ControllTool;
-import com.yuhuayuan.core.common.ServerErrorCode;
-import com.yuhuayuan.core.domain.goods;
-import com.yuhuayuan.core.domain.goodstr;
-import com.yuhuayuan.core.service.GoodsService;
+import com.yuhuayuan.tool.ControllTool;
+import com.yuhuayuan.core.dto.goods;
+import com.yuhuayuan.core.dto.goodstr;
+import com.yuhuayuan.core.service.impl.GoodsService;
 
 @Controller
 public class Goods {

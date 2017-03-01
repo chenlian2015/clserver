@@ -3,10 +3,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>yuhuayuanZhiGe</groupId>
 	<artifactId>cl</artifactId>
-	<packaging>war</packaging>
+
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>cl Maven Webapp</name>
+    <name>cl Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>

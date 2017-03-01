@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yuhuayuan.api.controller.tool.ControllTool;
-import com.yuhuayuan.core.service.WeiXinService;
-import com.yuhuayuan.core.utils.returngson.GsonResult;
-import com.yuhuayuan.thirtytool.weixin.SignUtil;
-import com.yuhuayuan.thirtytool.weixin.WeiXinHelper;
+import com.yuhuayuan.tool.ControllTool;
+import com.yuhuayuan.core.service.impl.WeiXinService;
+import com.yuhuayuan.tool.returngson.GsonResult;
+import com.yuhuayuan.tool.weixin.SignUtil;
+import com.yuhuayuan.tool.weixin.WeiXinHelper;
 
 
 

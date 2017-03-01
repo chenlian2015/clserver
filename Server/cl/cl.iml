@@ -69,6 +69,7 @@
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.2" level="project" />
     <orderEntry type="library" name="Maven: org.json:json:20140107" level="project" />
     <orderEntry type="module" module-name="serviceimpl" />
+    <orderEntry type="module" module-name="core" />
     <orderEntry type="module" module-name="service-api" />
     <orderEntry type="library" name="Maven: org.projectlombok:lombok:1.16.12" level="project" />
   </component>
