@@ -1,22 +1,22 @@
 package com.yuhuayuan.core.persistence;
 
-import com.yuhuayuan.core.dto.goods;
+import com.yuhuayuan.core.dto.goods.Goods;
 
 import java.util.List;
 
 
-public interface goodsMapper {
+public interface GoodsMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(goods record);
+    int insert(Goods record);
 
-    int insertSelective(goods record);
+    int insertSelective(Goods record);
 
-    goods selectByPrimaryKey(Integer id);
+    Goods selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(goods record);
+    int updateByPrimaryKeySelective(Goods record);
 
-    int updateByPrimaryKey(goods record);
+    int updateByPrimaryKey(Goods record);
     
-    List<goods> getAllGoods();
+    List<Goods> getAllGoods();
 }

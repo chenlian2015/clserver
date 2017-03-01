@@ -1,4 +1,4 @@
-package com.yuhuayuan.tool;
+package com.yuhuayuan.tool.net.http;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;

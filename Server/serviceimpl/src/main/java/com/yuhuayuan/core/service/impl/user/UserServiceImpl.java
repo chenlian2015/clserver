@@ -1,7 +1,9 @@
-package com.yuhuayuan.core.service.impl;
+package com.yuhuayuan.core.service.impl.user;
 
-import com.yuhuayuan.core.dto.User;
+import com.yuhuayuan.core.dto.user.User;
 import com.yuhuayuan.core.persistence.UserMapper;
+import com.yuhuayuan.core.service.redis.RedisCacheService;
+import com.yuhuayuan.core.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +12,7 @@ import java.util.Map;
 
 
 @Service
-public class UserService {
+public class UserServiceImpl implements UserService{
 	
     @Autowired
     protected UserMapper userMapper;

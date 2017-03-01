@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.yuhuayuan.core.persistence.versionMapper" >
-  <resultMap id="BaseResultMap" type="com.yuhuayuan.core.model.entity.version" >
+<mapper namespace="com.yuhuayuan.core.persistence.VersionMapper" >
+  <resultMap id="BaseResultMap" type="com.yuhuayuan.core.dto.version.AppVersion" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="value" property="value" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
@@ -30,7 +30,7 @@
     delete from version
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.yuhuayuan.core.model.entity.version" >
+  <insert id="insert" parameterType="com.yuhuayuan.core.dto.version.AppVersion" >
     insert into version (id, value, name,
       state, create_time, plateform, 
       file_id, file_name, file_url, 
@@ -42,7 +42,7 @@
       #{versionUrl,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, #{minvalue,jdbcType=VARCHAR}, 
       #{content,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.yuhuayuan.core.model.entity.version" >
+  <insert id="insertSelective" parameterType="com.yuhuayuan.core.dto.version.AppVersion" >
     insert into version
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -127,7 +127,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.yuhuayuan.core.model.entity.version" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.yuhuayuan.core.dto.version.AppVersion" >
     update version
     <set >
       <if test="value != null" >
@@ -169,7 +169,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.yuhuayuan.core.model.entity.version" >
+  <update id="updateByPrimaryKey" parameterType="com.yuhuayuan.core.dto.version.AppVersion" >
     update version
     set value = #{value,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},

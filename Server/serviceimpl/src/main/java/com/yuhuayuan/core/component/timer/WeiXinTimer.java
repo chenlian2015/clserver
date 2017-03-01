@@ -1,8 +1,8 @@
 package com.yuhuayuan.core.component.timer;
 
 import com.alibaba.fastjson.JSONObject;
-import com.yuhuayuan.core.service.impl.RedisCacheService;
-import com.yuhuayuan.tool.HttpUtils;
+import com.yuhuayuan.core.service.redis.RedisCacheService;
+import com.yuhuayuan.tool.net.http.HttpUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;

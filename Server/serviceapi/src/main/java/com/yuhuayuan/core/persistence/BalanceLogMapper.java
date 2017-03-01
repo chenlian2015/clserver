@@ -1,6 +1,6 @@
 package com.yuhuayuan.core.persistence;
 
-import com.yuhuayuan.core.dto.BalanceLog;
+import com.yuhuayuan.core.dto.log.BalanceLog;
 
 import java.util.List;
 

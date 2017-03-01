@@ -11,7 +11,7 @@ import org.aspectj.lang.annotation.*;
  */
 @Aspect
 public class MessageLog {
-	@Pointcut("execution(* com.yuhuayuan.core.service.impl.UserService.*(..))")
+	@Pointcut("execution(* com.yuhuayuan.core.service.impl.user.UserServiceImpl.*(..))")
 	private void anyMethod(){}//定义一个切入点
 	
 	@Before("anyMethod() && args(name)")

@@ -1,7 +1,7 @@
 package com.yuhuayuan.core.persistence;
 
 
-import com.yuhuayuan.core.dto.User;
+import com.yuhuayuan.core.dto.user.User;
 
 import java.util.List;
 

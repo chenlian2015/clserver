@@ -1,6 +1,8 @@
 package com.yuhuayuan.core.component.interceptor;
 
-import com.yuhuayuan.core.service.impl.RedisCacheService;
+import com.yuhuayuan.common.Constant;
+import com.yuhuayuan.core.service.redis.RedisCacheService;
+import com.yuhuayuan.tool.ResponseWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
@@ -55,23 +57,23 @@ public class LoginInteceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 		throws Exception {
 		
-//		 if (isExcludeUrl(request.getRequestURI())) {
-//			 return true;
-//		 }
-//		 
-//		String ticket = request.getHeader(Constant.REQUEST_PARAMETER_TICKET);
-//		if(null == ticket)
-//		{
-//			ResponseWriter.writeErrResponse(response, Constant.ACK_ERR_INVALID_TICKET, Constant.ACK_ERR_INVALID_TICKET_MSG);
-//			return false;
-//		}
-//		
-//		String phone = cacheService.get(ticket, String.class);
-//		if(null == phone || phone.length() ==0)
-//		{
-//			ResponseWriter.writeErrResponse(response, Constant.ACK_ERR_EMPTY_TICKET, Constant.ACK_ERR_EMPTY_TICKET_MSG);
-//			return false;
-//		}
+		 if (isExcludeUrl(request.getRequestURI())) {
+			 return true;
+		 }
+
+		String ticket = request.getHeader(Constant.REQUEST_PARAMETER_TICKET);
+		if(null == ticket)
+		{
+			ResponseWriter.writeErrResponse(response, Constant.ACK_ERR_INVALID_TICKET, Constant.ACK_ERR_INVALID_TICKET_MSG);
+			return false;
+		}
+
+		String phone = cacheService.get(ticket, String.class);
+		if(null == phone || phone.length() ==0)
+		{
+			ResponseWriter.writeErrResponse(response, Constant.ACK_ERR_EMPTY_TICKET, Constant.ACK_ERR_EMPTY_TICKET_MSG);
+			return false;
+		}
 		return true;
 	}
 

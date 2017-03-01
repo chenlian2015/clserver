@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.yuhuayuan.core.dto.User;
+import com.yuhuayuan.core.dto.user.User;
 
 
 @Controller

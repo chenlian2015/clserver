@@ -1,13 +1,10 @@
 package com.yuhuayuan.api.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.yuhuayuan.core.service.weixin.WeiXinService;
+import com.yuhuayuan.tool.ControllTool;
+import com.yuhuayuan.tool.returngson.GsonResult;
+import com.yuhuayuan.tool.weixin.SignUtil;
+import com.yuhuayuan.tool.weixin.WeiXinHelper;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,11 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yuhuayuan.tool.ControllTool;
-import com.yuhuayuan.core.service.impl.WeiXinService;
-import com.yuhuayuan.tool.returngson.GsonResult;
-import com.yuhuayuan.tool.weixin.SignUtil;
-import com.yuhuayuan.tool.weixin.WeiXinHelper;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 
 
@@ -31,7 +29,7 @@ public class WeiXinController {
 	private static final Logger logger = Logger.getLogger(WeiXinController.class); 
 	
 	@Autowired
-	WeiXinService weiXinService;
+	WeiXinService weiXinServiceImpl;
 	
 	@RequestMapping(value = "wxInterfaceSetting.do")
 	private void wxInterfaceSetting(HttpServletRequest request, HttpServletResponse response)
@@ -62,7 +60,7 @@ public class WeiXinController {
         
 		String strRequest = ControllTool.getRequestBody(request);
 		logger.error(strRequest);
-		String echo = weiXinService.weixinMessage(strRequest);
+		String echo = weiXinServiceImpl.weixinMessage(strRequest);
 
         out.print(echo);  
         out.close();

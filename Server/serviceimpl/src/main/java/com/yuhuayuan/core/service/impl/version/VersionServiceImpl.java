@@ -1,9 +1,8 @@
 package com.yuhuayuan.core.service.impl.version;
 
-import com.yuhuayuan.core.dto.version.VersionDto;
 import com.yuhuayuan.core.enums.GeneralStateEnum;
-import com.yuhuayuan.core.model.entity.version;
-import com.yuhuayuan.core.persistence.versionMapper;
+import com.yuhuayuan.core.dto.version.AppVersion;
+import com.yuhuayuan.core.persistence.VersionMapper;
 import com.yuhuayuan.core.service.appversion.VersionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,9 +13,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class VersionServiceImpl implements VersionService {
     @Autowired
-    versionMapper versionMapperx;
+    VersionMapper versionMapperx;
 
-    public boolean addVersion(version versionDto) {
+    public boolean addVersion(AppVersion versionDto) {
         versionMapperx.insert(versionDto);
         return false;
     }
@@ -25,11 +24,11 @@ public class VersionServiceImpl implements VersionService {
         return false;
     }
 
-    public boolean updateVersion(version versionDto) {
+    public boolean updateVersion(AppVersion versionDto) {
         return false;
     }
 
-    public VersionDto selectVersionByid(long id) {
+    public AppVersion selectVersionByid(long id) {
         return null;
     }
 

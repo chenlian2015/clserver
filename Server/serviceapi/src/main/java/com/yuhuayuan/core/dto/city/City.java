@@ -1,4 +1,4 @@
-package com.yuhuayuan.core.dto.test;
+package com.yuhuayuan.core.dto.city;
 
 public class City {
 	public String Name;

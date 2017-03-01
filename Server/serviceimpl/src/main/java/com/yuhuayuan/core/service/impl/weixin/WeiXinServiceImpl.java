@@ -1,14 +1,17 @@
-package com.yuhuayuan.core.service.impl;
+package com.yuhuayuan.core.service.impl.weixin;
 
 import com.alibaba.fastjson.JSON;
 import com.yuhuayuan.constant.WeiXinConstant;
-import com.yuhuayuan.core.dto.User;
+import com.yuhuayuan.core.dto.user.User;
 import com.yuhuayuan.core.dto.weixin.QRCodeRequest;
 import com.yuhuayuan.core.dto.weixin.UserBaseInfo;
 import com.yuhuayuan.core.persistence.UserMapper;
-import com.yuhuayuan.tool.HttpUtils;
+import com.yuhuayuan.core.service.redis.RedisCacheService;
+import com.yuhuayuan.core.service.user.UserService;
+import com.yuhuayuan.core.service.weixin.WeiXinService;
 import com.yuhuayuan.tool.ImageGenerator;
-import com.yuhuayuan.tool.MyStringUtil;
+import com.yuhuayuan.tool.net.http.HttpUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.json.XML;
@@ -22,12 +25,12 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class WeiXinService {
+public class WeiXinServiceImpl implements WeiXinService{
 
-	private static final Logger logger = Logger.getLogger(WeiXinService.class);
+	private static final Logger logger = Logger.getLogger(WeiXinServiceImpl.class);
 
 	@Autowired
-	private UserService userService;
+	private UserService userServiceImpl;
 
 	@Autowired
 	protected RedisCacheService cacheService;
@@ -64,17 +67,18 @@ public class WeiXinService {
 		String ToUserName = (String) joXML.get("FromUserName");
 		String MsgType = (String) joXML.get("MsgType");
 
+
 		// 事件消息
-		if (MyStringUtil.isNotEmpty(MsgType) && WeiXinConstant.MSG_TYPE_EVENT.equals(MsgType)) {
+		if (!StringUtils.isEmpty(MsgType) && WeiXinConstant.MSG_TYPE_EVENT.equals(MsgType)) {
 
 			String event = (String) joXML.get("Event");
 			// 事件为关注事件
-			if (MyStringUtil.isNotEmpty(event) && WeiXinConstant.MSG_TYPE_EVENT_SUBSCRIBE.equals(event)) {
+			if (!StringUtils.isEmpty(event) && WeiXinConstant.MSG_TYPE_EVENT_SUBSCRIBE.equals(event)) {
 
 				try {
 					// 表示所扫描二维码的参数
 					String eventKey = (String) joXML.get("EventKey");
-					if (MyStringUtil.isNotEmpty(eventKey)) {
+					if (!StringUtils.isEmpty(eventKey)) {
 						eventKey = eventKey.replace("qrscene_", "");
 					}
 
@@ -108,7 +112,7 @@ public class WeiXinService {
 					usr.setSharePicWithZCode(imageUploaded);
 
 					boolean b = true;
-					b = userService.insert(usr);
+					b = userServiceImpl.insert(usr);
 				} catch (Exception e) {
 					logger.error("weixinMessage", e);
 				}

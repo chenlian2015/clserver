@@ -3,14 +3,14 @@ package com.yuhuayuan.api.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.yuhuayuan.common.ServerErrorCode;
-import com.yuhuayuan.core.dto.User;
-import com.yuhuayuan.core.dto.test.City;
-import com.yuhuayuan.core.dto.test.CityList;
-import com.yuhuayuan.core.model.entity.version;
+import com.yuhuayuan.core.dto.city.City;
+import com.yuhuayuan.core.dto.city.CityList;
+import com.yuhuayuan.core.dto.user.User;
+import com.yuhuayuan.core.dto.version.AppVersion;
 import com.yuhuayuan.core.persistence.UserMapper;
 import com.yuhuayuan.core.service.appversion.VersionService;
-import com.yuhuayuan.core.service.impl.RedisCacheService;
-import com.yuhuayuan.core.service.impl.UserService;
+import com.yuhuayuan.core.service.redis.RedisCacheService;
+import com.yuhuayuan.core.service.user.UserService;
 import com.yuhuayuan.tool.ControllTool;
 import com.yuhuayuan.tool.returngson.GsonResult;
 import org.apache.log4j.Logger;
@@ -34,7 +34,7 @@ import java.util.List;
 public class Login {
 	
 	@Autowired
-    private UserService userService;
+    private UserService userServiceImpl;
 	
     @Autowired
     private  HttpServletRequest request;
@@ -53,7 +53,7 @@ public class Login {
     void test()
 	{
 
-		version versionDto = new version();
+		AppVersion versionDto = new AppVersion();
 		versionDto.setChannel("a");
 		versionDto.setName("a");
 		versionDto.setContent("c");
@@ -120,7 +120,7 @@ public class Login {
 		User usr = JSON.parseObject(strRequest, User.class);
 		
 		boolean b = true;
-		b = userService.insert(usr);
+		b = userServiceImpl.insert(usr);
 		  
 		}catch(Exception e)
 		{

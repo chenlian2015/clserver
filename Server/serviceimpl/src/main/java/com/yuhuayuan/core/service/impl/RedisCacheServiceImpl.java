@@ -2,6 +2,7 @@ package com.yuhuayuan.core.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.yuhuayuan.core.service.redis.RedisCacheService;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -13,7 +14,7 @@ import java.util.Set;
 
 
 @Component
-public class RedisCacheService {
+public class RedisCacheServiceImpl implements RedisCacheService{
 
   
     private JedisPool jedisPool;

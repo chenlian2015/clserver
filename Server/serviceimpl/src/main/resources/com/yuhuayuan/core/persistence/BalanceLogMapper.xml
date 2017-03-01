@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yuhuayuan.core.persistence.BalanceLogMapper" >
-  <resultMap id="BaseResultMap" type="com.yuhuayuan.core.dto.BalanceLog" >
+  <resultMap id="BaseResultMap" type="com.yuhuayuan.core.dto.log.BalanceLog" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="yuhuayuanid" property="yuhuayuanid" jdbcType="INTEGER" />
     <result column="balancenum" property="balancenum" jdbcType="DECIMAL" />
@@ -32,7 +32,7 @@
     delete from balance_log
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.yuhuayuan.core.dto.BalanceLog" >
+  <insert id="insert" parameterType="com.yuhuayuan.core.dto.log.BalanceLog" >
     insert into balance_log (id, yuhuayuanid, balancenum, 
       manager, balancecode, insertdate, 
       balancetype, otherinfo)
@@ -40,7 +40,7 @@
       #{manager,jdbcType=VARCHAR}, #{balancecode,jdbcType=VARCHAR}, #{insertdate,jdbcType=TIMESTAMP}, 
       #{balancetype,jdbcType=INTEGER}, #{otherinfo,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.yuhuayuan.core.dto.BalanceLog" >
+  <insert id="insertSelective" parameterType="com.yuhuayuan.core.dto.log.BalanceLog" >
     insert into balance_log
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -95,7 +95,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.yuhuayuan.core.dto.BalanceLog" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.yuhuayuan.core.dto.log.BalanceLog" >
     update balance_log
     <set >
       <if test="yuhuayuanid != null" >
@@ -122,7 +122,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.yuhuayuan.core.dto.BalanceLog" >
+  <update id="updateByPrimaryKey" parameterType="com.yuhuayuan.core.dto.log.BalanceLog" >
     update balance_log
     set yuhuayuanid = #{yuhuayuanid,jdbcType=INTEGER},
       balancenum = #{balancenum,jdbcType=DECIMAL},

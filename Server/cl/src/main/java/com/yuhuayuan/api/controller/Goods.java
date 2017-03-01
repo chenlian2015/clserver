@@ -1,11 +1,7 @@
 package com.yuhuayuan.api.controller;
 
-import java.math.BigDecimal;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.yuhuayuan.core.service.impl.goods.GoodsServiceImpl;
+import com.yuhuayuan.tool.ControllTool;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,16 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.yuhuayuan.tool.ControllTool;
-import com.yuhuayuan.core.dto.goods;
-import com.yuhuayuan.core.dto.goodstr;
-import com.yuhuayuan.core.service.impl.GoodsService;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.math.BigDecimal;
+import java.util.List;
 
 @Controller
 public class Goods {
 
 	@Autowired
-	private GoodsService goodsService;
+	private GoodsServiceImpl goodsService;
 	
 	private static final Logger logger = Logger.getLogger(Login.class);
 	// 列表
@@ -35,7 +31,7 @@ public class Goods {
 		ModelAndView mv = new ModelAndView();
 		// 添加模型数据 可以是任意的POJO对象
 		
-		List<goods> listGoods = goodsService.getAllGoods();
+		List<com.yuhuayuan.core.dto.goods.Goods> listGoods = goodsService.getAllGoods();
 		mv.addObject("listGoods", listGoods);
 		// 设置逻辑视图名，视图解析器会根据该名字解析到具体的视图页面
 		mv.setViewName("listGoods");
@@ -52,7 +48,7 @@ public class Goods {
 		ModelAndView mv = new ModelAndView();
 		// 添加模型数据 可以是任意的POJO对象
 		
-		List<goods> listGoods = goodsService.getAllGoods();
+		List<com.yuhuayuan.core.dto.goods.Goods> listGoods = goodsService.getAllGoods();
 		
 		mv.addObject("listGoods", listGoods);
 		// 设置逻辑视图名，视图解析器会根据该名字解析到具体的视图页面
@@ -61,17 +57,17 @@ public class Goods {
 		return mv;
 	}
 	
-	@RequestMapping(value = "addgoodsX.do", method=RequestMethod.POST)
-	public String addGoodsX(goodstr goodsRecord) throws Exception{
+	@RequestMapping(value = "addGoodsX.do", method=RequestMethod.POST)
+	public String addGoodsX(Goods goodsRecord) throws Exception{
 		ControllTool.LogString(goodsRecord.toString());
 		return null;
 	}
-	@RequestMapping(value = "addgoods.do", method=RequestMethod.POST)
+	@RequestMapping(value = "addGoods.do", method=RequestMethod.POST)
 	public ModelAndView addGoods(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		
 		ControllTool.LogRequest(request, logger);
 		
-		goods goodsRecord = new goods();
+		com.yuhuayuan.core.dto.goods.Goods goodsRecord = new com.yuhuayuan.core.dto.goods.Goods();
 		goodsRecord.setGoodsdescribe(request.getParameter("goodsdescribe"));
 		goodsRecord.setGoodsellprice(new BigDecimal(request.getParameter("goodsellprice")));
 		goodsRecord.setGoodsimageurl(request.getParameter("goodsimageurl"));

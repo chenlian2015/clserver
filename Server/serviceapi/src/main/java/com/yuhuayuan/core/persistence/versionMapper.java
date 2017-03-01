@@ -1,17 +1,17 @@
 package com.yuhuayuan.core.persistence;
 
-import com.yuhuayuan.core.model.entity.version;
+import com.yuhuayuan.core.dto.version.AppVersion;
 
-public interface versionMapper {
+public interface VersionMapper {
     int deleteByPrimaryKey(Long id);
 
-    int insert(version record);
+    int insert(AppVersion record);
 
-    int insertSelective(version record);
+    int insertSelective(AppVersion record);
 
-    version selectByPrimaryKey(Long id);
+    AppVersion selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(version record);
+    int updateByPrimaryKeySelective(AppVersion record);
 
-    int updateByPrimaryKey(version record);
+    int updateByPrimaryKey(AppVersion record);
 }
