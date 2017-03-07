@@ -11,7 +11,7 @@
 
 
     <properties>
-        <spring.version>3.0.5.RELEASE</spring.version>
+        <spring.version>4.0.4.RELEASE</spring.version>
     </properties>
 
     <dependencies>
@@ -50,7 +50,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <version>${spring.version}</version>
+            <version>4.3.6.RELEASE</version>
         </dependency>
 
         <dependency>

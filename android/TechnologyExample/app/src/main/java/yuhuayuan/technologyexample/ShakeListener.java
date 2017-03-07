@@ -93,10 +93,10 @@ public class ShakeListener implements SensorEventListener {
         if (speed >= SPEED_SHRESHOLD && isCanSahke) {
 
 
-            if (MainActivity.bCurrentActivityActive) {
+            if (ThreadHandlerMainActivity.bCurrentActivityActive) {
                 Log.e(TAG, "fore groudn");
             }
-            else if(MainActivity.isScreenLocked)
+            else if(ThreadHandlerMainActivity.isScreenLocked)
             {
                 Log.e(TAG, "back  ground");
             }

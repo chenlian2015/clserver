@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yuhuayuan.core.persistence.SystemFunctionMapper" >
+  <resultMap id="BaseResultMap" type="com.yuhuayuan.core.dto.systemfunction.SystemFunction" >
+    <id column="function_id" property="functionId" jdbcType="BIGINT" />
+    <result column="function_code" property="functionCode" jdbcType="VARCHAR" />
+    <result column="function_name" property="functionName" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    <result column="function_url" property="functionUrl" jdbcType="VARCHAR" />
+    <result column="pic_url" property="picUrl" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="order_no" property="orderNo" jdbcType="INTEGER" />
+    <result column="creator_name" property="creatorName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modifier" property="modifier" jdbcType="VARCHAR" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    function_id, function_code, function_name, parent_id, function_url, pic_url, type, 
+    path, order_no, creator_name, create_time, modifier, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from system_function
+    where function_id = #{functionId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from system_function
+    where function_id = #{functionId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yuhuayuan.core.dto.systemfunction.SystemFunction" >
+    insert into system_function (function_id, function_code, function_name, 
+      parent_id, function_url, pic_url, 
+      type, path, order_no, 
+      creator_name, create_time, modifier, 
+      modify_time)
+    values (#{functionId,jdbcType=BIGINT}, #{functionCode,jdbcType=VARCHAR}, #{functionName,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=BIGINT}, #{functionUrl,jdbcType=VARCHAR}, #{picUrl,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{path,jdbcType=VARCHAR}, #{orderNo,jdbcType=INTEGER}, 
+      #{creatorName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifier,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yuhuayuan.core.dto.systemfunction.SystemFunction" >
+    insert into system_function
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="functionId != null" >
+        function_id,
+      </if>
+      <if test="functionCode != null" >
+        function_code,
+      </if>
+      <if test="functionName != null" >
+        function_name,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="functionUrl != null" >
+        function_url,
+      </if>
+      <if test="picUrl != null" >
+        pic_url,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="creatorName != null" >
+        creator_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifier != null" >
+        modifier,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="functionId != null" >
+        #{functionId,jdbcType=BIGINT},
+      </if>
+      <if test="functionCode != null" >
+        #{functionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="functionName != null" >
+        #{functionName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="functionUrl != null" >
+        #{functionUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="picUrl != null" >
+        #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=INTEGER},
+      </if>
+      <if test="creatorName != null" >
+        #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null" >
+        #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yuhuayuan.core.dto.systemfunction.SystemFunction" >
+    update system_function
+    <set >
+      <if test="functionCode != null" >
+        function_code = #{functionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="functionName != null" >
+        function_name = #{functionName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="functionUrl != null" >
+        function_url = #{functionUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="picUrl != null" >
+        pic_url = #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=INTEGER},
+      </if>
+      <if test="creatorName != null" >
+        creator_name = #{creatorName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifier != null" >
+        modifier = #{modifier,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where function_id = #{functionId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yuhuayuan.core.dto.systemfunction.SystemFunction" >
+    update system_function
+    set function_code = #{functionCode,jdbcType=VARCHAR},
+      function_name = #{functionName,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=BIGINT},
+      function_url = #{functionUrl,jdbcType=VARCHAR},
+      pic_url = #{picUrl,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      path = #{path,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=INTEGER},
+      creator_name = #{creatorName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modifier = #{modifier,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where function_id = #{functionId,jdbcType=BIGINT}
+  </update>
+</mapper>

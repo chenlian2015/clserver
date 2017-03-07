@@ -9,16 +9,16 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
-        <activity
-            android:name=".hunxiao.bean.TestActivity"
-            android:launchMode="singleTask">
+        <activity android:name=".GustureActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".hunxiao.bean.TestActivity"
+            android:launchMode="singleTask"></activity>
         <activity android:name=".systemexit.ansynctask.SystemExitAnsyTaskActivity" />
         <activity
             android:name=".hunxiao.bean.SingleTopActivity"
@@ -29,14 +29,15 @@
             android:enabled="true"
             android:exported="true"
             android:isolatedProcess="true"
-            android:process=":remote"
-             />
+            android:process=":remote" />
         <service
-            android:name="yuhuayuan.technologyexample.MessengerService"
+            android:name=".MessengerService"
             android:enabled="true"
             android:exported="true"
             android:isolatedProcess="true"
-            android:process=":helloworld"></service>
+            android:process=":helloworld" />
+
+
     </application>
 
 </manifest>
